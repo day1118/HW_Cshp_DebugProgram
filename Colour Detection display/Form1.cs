@@ -36,6 +36,8 @@ namespace Colour_Detection_display
 
         int plotTime = 200;
 
+        char delimiter = ':';
+
         public Form1()
         {
             InitializeComponent();
@@ -142,7 +144,7 @@ namespace Colour_Detection_display
                         {
                             lblColourReported.Text = text;
                         }
-                        else if (text.StartsWith("GR-"))
+                        else if (text.StartsWith("GR" + delimiter))
                         {
                             label1.Text = text;
                             while (chtGround.Series[0].Points.Count > plotTime)
@@ -152,7 +154,7 @@ namespace Colour_Detection_display
                             chtGround.Update();
                             chtGround.Series[0].Points.AddY(Convert.ToInt32(text.Substring(3)));
                         }
-                        else if (text.StartsWith("GG-"))
+                        else if (text.StartsWith("GG" + delimiter))
                         {
                             label2.Text = text;
                             while (chtGround.Series[1].Points.Count > plotTime)
@@ -162,7 +164,7 @@ namespace Colour_Detection_display
                             chtGround.Update();
                             chtGround.Series[1].Points.AddY(Convert.ToInt32(text.Substring(3)));
                         }
-                        else if (text.StartsWith("BR-"))
+                        else if (text.StartsWith("BR" + delimiter))
                         {
                             label3.Text = text;
                             while (chtBall.Series[0].Points.Count > plotTime)
@@ -172,7 +174,7 @@ namespace Colour_Detection_display
                             chtBall.Update();
                             chtBall.Series[0].Points.AddY(Convert.ToInt32(text.Substring(3)));
                         }
-                        else if (text.StartsWith("BI-"))
+                        else if (text.StartsWith("BI" + delimiter))
                         {
                             label4.Text = text;
                             while (chtBall.Series[1].Points.Count > plotTime)
@@ -182,11 +184,11 @@ namespace Colour_Detection_display
                             chtBall.Update();
                             chtBall.Series[1].Points.AddY(Convert.ToInt32(text.Substring(3)));
                         }
-                        else if (text.StartsWith("S-"))
+                        else if (text.StartsWith("S" + delimiter))
                         {
                             label5.Text = text;
                         }
-                        else if (text.StartsWith("U-"))
+                        else if (text.StartsWith("U" + delimiter))
                         {
                             label10.Text = text;
                             while (chtUltrasonics.Series[0].Points.Count > plotTime)
@@ -196,7 +198,7 @@ namespace Colour_Detection_display
                             chtUltrasonics.Update();
                             chtUltrasonics.Series[0].Points.AddY(Convert.ToInt32(text.Substring(2)));
                         }
-                        else if (text.StartsWith("IR1-"))
+                        else if (text.StartsWith("IR1" + delimiter))
                         {
                             label6.Text = text;
                             while (chtIR1.Series[0].Points.Count > plotTime)
@@ -206,7 +208,7 @@ namespace Colour_Detection_display
                             chtIR1.Update();
                             chtIR1.Series[0].Points.AddY(Convert.ToInt32(text.Substring(4)));
                         }
-                        else if (text.StartsWith("IR2-"))
+                        else if (text.StartsWith("IR2" + delimiter))
                         {
                             label7.Text = text;
                             while (chtIR2.Series[0].Points.Count > plotTime)
@@ -216,7 +218,7 @@ namespace Colour_Detection_display
                             chtIR2.Update();
                             chtIR2.Series[0].Points.AddY(Convert.ToInt32(text.Substring(4)));
                         }
-                        else if (text.StartsWith("IR3-"))
+                        else if (text.StartsWith("IR3" + delimiter))
                         {
                             label8.Text = text;
                             while (chtIR3.Series[0].Points.Count > plotTime)
@@ -226,7 +228,7 @@ namespace Colour_Detection_display
                             chtIR3.Update();
                             chtIR3.Series[0].Points.AddY(Convert.ToInt32(text.Substring(4)));
                         }
-                        else if (text.StartsWith("IR4-"))
+                        else if (text.StartsWith("IR4" + delimiter))
                         {
                             label9.Text = text;
                             while (chtIR4.Series[0].Points.Count > plotTime)
@@ -256,19 +258,19 @@ namespace Colour_Detection_display
                                 chtCamera.Refresh();
                             }
                         }
-                        else if (text.StartsWith("BD-"))
+                        else if (text.StartsWith("BD" + delimiter))
                         {
                             label11.Text = text;
                         }
-                        else if (text.StartsWith("bestWidth-"))
+                        else if (text.StartsWith("bestWidth" + delimiter))
                         {
                             label12.Text = text;
                         }
-                        else if (text.StartsWith("bestStart-"))
+                        else if (text.StartsWith("bestStart" + delimiter))
                         {
                             label13.Text = text;
                         }
-                        else if (text.StartsWith("LP-"))
+                        else if (text.StartsWith("LP" + delimiter))
                         {
                             label14.Text = text;
                         }
@@ -278,7 +280,7 @@ namespace Colour_Detection_display
                         }
 
                         // Determine if there is a - in the string
-                        String[] splitString = text.Split('-');
+                        String[] splitString = text.Split(delimiter);
                         if (splitString.Length == 2)
                         {
                             String name = splitString[0];
