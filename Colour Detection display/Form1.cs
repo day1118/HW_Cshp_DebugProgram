@@ -18,6 +18,8 @@ namespace Colour_Detection_display
         string currentPort = "";
         int plotLength = 50;
 
+        IRModlue tpgIRFLTemp = new IRModlue("IRFL");
+
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +35,9 @@ namespace Colour_Detection_display
                 newToolStrip.Click += new System.EventHandler(this.toolStripPort_Click);
                 toolStripPort.DropDownItems.Add(newToolStrip);
             }
+
+            
+            tabControl1.TabPages.Add(tpgIRFLTemp);
 
             timer1.Enabled = true;
         }
@@ -66,6 +71,7 @@ namespace Colour_Detection_display
                     {
                         string text = serialPort.ReadLine();
                         addStringToOverviewList(text);
+                        tpgIRFLTemp.addData(text);
 
                         string[] splitText = text.Split(stringDelimiter);
 
