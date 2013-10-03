@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace Colour_Detection_display
@@ -15,6 +16,7 @@ namespace Colour_Detection_display
     {
         char stringDelimiter = ':';
         string currentPort = "";
+        int plotLength = 50;
 
         public Form1()
         {
@@ -59,40 +61,42 @@ namespace Colour_Detection_display
                 displayPortStatus();
 
                 if (serialPort.IsOpen)
-                {                   
+                {
                     while (serialPort.BytesToRead > 0)
                     {
                         string text = serialPort.ReadLine();
+                        addStringToOverviewList(text);
+
                         string[] splitText = text.Split(stringDelimiter);
 
                         if (splitText.Length == 2)
                         {
                             String name = splitText[0];
                             String value = splitText[1];
+                            int iValue = Convert.ToInt32(value);
 
-                            ListViewItem existingItem = null;
-
-                            for (int i = 0; i < lstOverview.Items.Count; i++)
+                            switch (name)
                             {
-                                if (lstOverview.Items[i].Text.Equals(name))
-                                {
-                                    existingItem = lstOverview.Items[i];
+                                case "IRFL_FRONT_Off":
+                                    addDataToChart(iValue, chtIRFL_Front_Off);
                                     break;
-                                }
-                            }
-
-                            if (existingItem == null)
-                            {
-                                ListViewItem newItem = new ListViewItem(name);
-                                newItem.SubItems.Add(value);
-                                lstOverview.Items.Add(newItem);
-                            }
-                            else
-                            {
-                                existingItem.SubItems[1].Text = value;
-                            }
+                                case "IRFL_FRONT_On":
+                                    addDataToChart(iValue, chtIRFL_Front_On);
+                                    break;
+                                case "IRFL_FRONT_Diff":
+                                    addDataToChart(iValue, chtIRFL_Front_Diff);
+                                    break;
+                                case "IRFL_SIDE_Off":
+                                    addDataToChart(iValue, chtIRFL_Side_Off);
+                                    break;
+                                case "IRFL_SIDE_On":
+                                    addDataToChart(iValue, chtIRFL_Side_On);
+                                    break;
+                                case "IRFL_SIDE_Diff":
+                                    addDataToChart(iValue, chtIRFL_Side_Diff);
+                                    break;
+                            }       
                         }
-
                     }
                 }
                 else
@@ -144,7 +148,50 @@ namespace Colour_Detection_display
                 toolStripStatusPort.Text = currentPort + " - " + connectedStatus;
             else
                 toolStripStatusPort.Text = connectedStatus;
+        }
 
+        private void addStringToOverviewList(string text)
+        {
+            string[] splitText = text.Split(stringDelimiter);
+
+            if (splitText.Length == 2)
+            {
+                String name = splitText[0];
+                String value = splitText[1];
+
+                ListViewItem existingItem = null;
+
+                for (int i = 0; i < lstOverview.Items.Count; i++)
+                {
+                    if (lstOverview.Items[i].Text.Equals(name))
+                    {
+                        existingItem = lstOverview.Items[i];
+                        break;
+                    }
+                }
+
+                if (existingItem == null)
+                {
+                    ListViewItem newItem = new ListViewItem(name);
+                    newItem.SubItems.Add(value);
+                    lstOverview.Items.Add(newItem);
+                }
+                else
+                {
+                    existingItem.SubItems[1].Text = value;
+                }
+            }
+        }
+
+        private void addDataToChart(int data, Chart chart)
+        {
+            while (chart.Series[0].Points.Count > plotLength)
+            {
+                chart.Series[0].Points.RemoveAt(0);
+            }
+            
+            chart.Series[0].Points.AddY(data);
+            chart.ChartAreas[0].RecalculateAxesScale();
         }
     }
 }

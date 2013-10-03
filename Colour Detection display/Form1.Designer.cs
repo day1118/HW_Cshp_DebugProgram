@@ -30,23 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title13 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title14 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title15 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title16 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title17 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title18 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpgOverview = new System.Windows.Forms.TabPage();
             this.lstOverview = new System.Windows.Forms.ListView();
@@ -54,12 +54,12 @@
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpgIRFL = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart5 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart6 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtIRFL_Front_Off = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtIRFL_Front_On = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtIRFL_Front_Diff = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtIRFL_Side_Off = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtIRFL_Side_On = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtIRFL_Side_Diff = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tpgIRFR = new System.Windows.Forms.TabPage();
             this.tpgIRBL = new System.Windows.Forms.TabPage();
             this.tpgIRBR = new System.Windows.Forms.TabPage();
@@ -82,12 +82,12 @@
             this.tpgOverview.SuspendLayout();
             this.tpgIRFL.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Front_Off)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Front_On)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Front_Diff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Side_Off)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Side_On)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Side_Diff)).BeginInit();
             this.statusStrip2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -161,12 +161,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Controls.Add(this.chart1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.chart2, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.chart3, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.chart4, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.chart5, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.chart6, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.chtIRFL_Front_Off, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.chtIRFL_Front_On, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.chtIRFL_Front_Diff, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.chtIRFL_Side_Off, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.chtIRFL_Side_On, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.chtIRFL_Side_Diff, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -176,107 +176,106 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(872, 842);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // chart1
+            // chtIRFL_Front_Off
             // 
             chartArea13.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea13);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend13.Name = "Legend1";
-            this.chart1.Legends.Add(legend13);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
+            this.chtIRFL_Front_Off.ChartAreas.Add(chartArea13);
+            this.chtIRFL_Front_Off.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chtIRFL_Front_Off.Location = new System.Drawing.Point(3, 3);
+            this.chtIRFL_Front_Off.Name = "chtIRFL_Front_Off";
             series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
             series13.Name = "Series1";
-            this.chart1.Series.Add(series13);
-            this.chart1.Size = new System.Drawing.Size(284, 415);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.chtIRFL_Front_Off.Series.Add(series13);
+            this.chtIRFL_Front_Off.Size = new System.Drawing.Size(284, 415);
+            this.chtIRFL_Front_Off.TabIndex = 0;
+            this.chtIRFL_Front_Off.Text = "chart1";
+            title13.Name = "Title1";
+            title13.Text = "IRFL Front Off";
+            this.chtIRFL_Front_Off.Titles.Add(title13);
             // 
-            // chart2
+            // chtIRFL_Front_On
             // 
             chartArea14.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea14);
-            this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend14.Name = "Legend1";
-            this.chart2.Legends.Add(legend14);
-            this.chart2.Location = new System.Drawing.Point(293, 3);
-            this.chart2.Name = "chart2";
+            this.chtIRFL_Front_On.ChartAreas.Add(chartArea14);
+            this.chtIRFL_Front_On.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chtIRFL_Front_On.Location = new System.Drawing.Point(293, 3);
+            this.chtIRFL_Front_On.Name = "chtIRFL_Front_On";
             series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
             series14.Name = "Series1";
-            this.chart2.Series.Add(series14);
-            this.chart2.Size = new System.Drawing.Size(284, 415);
-            this.chart2.TabIndex = 1;
-            this.chart2.Text = "chart2";
+            this.chtIRFL_Front_On.Series.Add(series14);
+            this.chtIRFL_Front_On.Size = new System.Drawing.Size(284, 415);
+            this.chtIRFL_Front_On.TabIndex = 1;
+            this.chtIRFL_Front_On.Text = "chart2";
+            title14.Name = "Title1";
+            title14.Text = "IRFL Front On";
+            this.chtIRFL_Front_On.Titles.Add(title14);
             // 
-            // chart3
+            // chtIRFL_Front_Diff
             // 
             chartArea15.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea15);
-            this.chart3.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend15.Name = "Legend1";
-            this.chart3.Legends.Add(legend15);
-            this.chart3.Location = new System.Drawing.Point(583, 3);
-            this.chart3.Name = "chart3";
+            this.chtIRFL_Front_Diff.ChartAreas.Add(chartArea15);
+            this.chtIRFL_Front_Diff.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chtIRFL_Front_Diff.Location = new System.Drawing.Point(583, 3);
+            this.chtIRFL_Front_Diff.Name = "chtIRFL_Front_Diff";
             series15.ChartArea = "ChartArea1";
-            series15.Legend = "Legend1";
             series15.Name = "Series1";
-            this.chart3.Series.Add(series15);
-            this.chart3.Size = new System.Drawing.Size(286, 415);
-            this.chart3.TabIndex = 2;
-            this.chart3.Text = "chart3";
+            this.chtIRFL_Front_Diff.Series.Add(series15);
+            this.chtIRFL_Front_Diff.Size = new System.Drawing.Size(286, 415);
+            this.chtIRFL_Front_Diff.TabIndex = 2;
+            this.chtIRFL_Front_Diff.Text = "chart3";
+            title15.Name = "Title1";
+            title15.Text = "IRFL Front Diff";
+            this.chtIRFL_Front_Diff.Titles.Add(title15);
             // 
-            // chart4
+            // chtIRFL_Side_Off
             // 
             chartArea16.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea16);
-            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend16.Name = "Legend1";
-            this.chart4.Legends.Add(legend16);
-            this.chart4.Location = new System.Drawing.Point(3, 424);
-            this.chart4.Name = "chart4";
+            this.chtIRFL_Side_Off.ChartAreas.Add(chartArea16);
+            this.chtIRFL_Side_Off.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chtIRFL_Side_Off.Location = new System.Drawing.Point(3, 424);
+            this.chtIRFL_Side_Off.Name = "chtIRFL_Side_Off";
             series16.ChartArea = "ChartArea1";
-            series16.Legend = "Legend1";
             series16.Name = "Series1";
-            this.chart4.Series.Add(series16);
-            this.chart4.Size = new System.Drawing.Size(284, 415);
-            this.chart4.TabIndex = 3;
-            this.chart4.Text = "chart4";
+            this.chtIRFL_Side_Off.Series.Add(series16);
+            this.chtIRFL_Side_Off.Size = new System.Drawing.Size(284, 415);
+            this.chtIRFL_Side_Off.TabIndex = 3;
+            title16.Name = "Title1";
+            title16.Text = "IRFL Side Off";
+            this.chtIRFL_Side_Off.Titles.Add(title16);
             // 
-            // chart5
+            // chtIRFL_Side_On
             // 
             chartArea17.Name = "ChartArea1";
-            this.chart5.ChartAreas.Add(chartArea17);
-            this.chart5.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend17.Name = "Legend1";
-            this.chart5.Legends.Add(legend17);
-            this.chart5.Location = new System.Drawing.Point(293, 424);
-            this.chart5.Name = "chart5";
+            this.chtIRFL_Side_On.ChartAreas.Add(chartArea17);
+            this.chtIRFL_Side_On.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chtIRFL_Side_On.Location = new System.Drawing.Point(293, 424);
+            this.chtIRFL_Side_On.Name = "chtIRFL_Side_On";
             series17.ChartArea = "ChartArea1";
-            series17.Legend = "Legend1";
             series17.Name = "Series1";
-            this.chart5.Series.Add(series17);
-            this.chart5.Size = new System.Drawing.Size(284, 415);
-            this.chart5.TabIndex = 4;
-            this.chart5.Text = "chart5";
+            this.chtIRFL_Side_On.Series.Add(series17);
+            this.chtIRFL_Side_On.Size = new System.Drawing.Size(284, 415);
+            this.chtIRFL_Side_On.TabIndex = 4;
+            this.chtIRFL_Side_On.Text = "chart5";
+            title17.Name = "Title1";
+            title17.Text = "IRFL Side On";
+            this.chtIRFL_Side_On.Titles.Add(title17);
             // 
-            // chart6
+            // chtIRFL_Side_Diff
             // 
             chartArea18.Name = "ChartArea1";
-            this.chart6.ChartAreas.Add(chartArea18);
-            this.chart6.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend18.Name = "Legend1";
-            this.chart6.Legends.Add(legend18);
-            this.chart6.Location = new System.Drawing.Point(583, 424);
-            this.chart6.Name = "chart6";
+            this.chtIRFL_Side_Diff.ChartAreas.Add(chartArea18);
+            this.chtIRFL_Side_Diff.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chtIRFL_Side_Diff.Location = new System.Drawing.Point(583, 424);
+            this.chtIRFL_Side_Diff.Name = "chtIRFL_Side_Diff";
             series18.ChartArea = "ChartArea1";
-            series18.Legend = "Legend1";
             series18.Name = "Series1";
-            this.chart6.Series.Add(series18);
-            this.chart6.Size = new System.Drawing.Size(286, 415);
-            this.chart6.TabIndex = 5;
-            this.chart6.Text = "chart6";
+            this.chtIRFL_Side_Diff.Series.Add(series18);
+            this.chtIRFL_Side_Diff.Size = new System.Drawing.Size(286, 415);
+            this.chtIRFL_Side_Diff.TabIndex = 5;
+            this.chtIRFL_Side_Diff.Text = "chart6";
+            title18.Name = "Title1";
+            title18.Text = "IRFL Side Diff";
+            this.chtIRFL_Side_Diff.Titles.Add(title18);
             // 
             // tpgIRFR
             // 
@@ -405,7 +404,7 @@
             // toolStripConnect
             // 
             this.toolStripConnect.Name = "toolStripConnect";
-            this.toolStripConnect.Size = new System.Drawing.Size(152, 22);
+            this.toolStripConnect.Size = new System.Drawing.Size(119, 22);
             this.toolStripConnect.Text = "Connect";
             this.toolStripConnect.Click += new System.EventHandler(this.toolStripConnect_Click);
             // 
@@ -415,6 +414,10 @@
             this.toolStripExit.Size = new System.Drawing.Size(119, 22);
             this.toolStripExit.Text = "Exit";
             this.toolStripExit.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // serialPort
+            // 
+            this.serialPort.BaudRate = 115200;
             // 
             // timer1
             // 
@@ -436,12 +439,12 @@
             this.tpgOverview.ResumeLayout(false);
             this.tpgIRFL.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Front_Off)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Front_On)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Front_Diff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Side_Off)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Side_On)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtIRFL_Side_Diff)).EndInit();
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
@@ -474,12 +477,12 @@
         private System.Windows.Forms.ListView lstOverview;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colValue;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart4;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart5;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart6;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtIRFL_Front_Off;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtIRFL_Front_On;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtIRFL_Front_Diff;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtIRFL_Side_Off;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtIRFL_Side_On;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtIRFL_Side_Diff;
         private System.Windows.Forms.ToolStripMenuItem toolStripPort;
         private System.Windows.Forms.ToolStripMenuItem toolStripConnect;
         private System.IO.Ports.SerialPort serialPort;
