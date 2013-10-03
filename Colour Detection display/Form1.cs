@@ -18,10 +18,13 @@ namespace Colour_Detection_display
         string currentPort = "";
         int plotLength = 50;
 
-        IRModlue tpgIRFL = new IRModlue("IRFL");
-        IRModlue tpgIRFR = new IRModlue("IRFR");
-        IRModlue tpgIRBL = new IRModlue("IRBL");
-        IRModlue tpgIRBR = new IRModlue("IRBR");
+        IRModule tpgIRFL = new IRModule("IRFL");
+        IRModule tpgIRFR = new IRModule("IRFR");
+        IRModule tpgIRBL = new IRModule("IRBL");
+        IRModule tpgIRBR = new IRModule("IRBR");
+        ColourModule tpgGML = new ColourModule("GML");
+        ColourModule tpgGMR = new ColourModule("GMR");
+        ColourModule tpgBALL = new ColourModule("BALL");
 
         public Form1()
         {
@@ -43,6 +46,9 @@ namespace Colour_Detection_display
             tabControl1.TabPages.Add(tpgIRFR);
             tabControl1.TabPages.Add(tpgIRBL);
             tabControl1.TabPages.Add(tpgIRBR);
+            tabControl1.TabPages.Add(tpgGML);
+            tabControl1.TabPages.Add(tpgGMR);
+            tabControl1.TabPages.Add(tpgBALL);
 
             if (toolStripPort.DropDownItems.Count > 0)
             {
@@ -87,7 +93,9 @@ namespace Colour_Detection_display
                         tpgIRFR.addData(text);
                         tpgIRBL.addData(text);
                         tpgIRBR.addData(text);
-
+                        tpgGML.addData(text);
+                        tpgGMR.addData(text);
+                        tpgBALL.addData(text);
 
                         string[] splitText = text.Split(stringDelimiter);
 

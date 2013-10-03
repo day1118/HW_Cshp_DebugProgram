@@ -7,30 +7,30 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Colour_Detection_display
 {
-    class IRModule : TabPage
+    class ColourModule : TabPage
     {
         TableLayoutPanel layoutPanel = new TableLayoutPanel();
-        Chart[] charts = new IRChart[6];
+        Chart[] charts = new ColourChart[6];
         int plotLength = 50;
         char stringDelimiter = ':';
 
-        public IRModule(string name)
+        public ColourModule(string name)
         {
             this.Name = "tpg" + name;
             this.Text = name;
 
-            string dir;
-            if(name.Substring(2, 1).Equals("F"))
-                dir = "Front";
+            string colour2;
+            if(name.Substring(0, 2).Equals("GM"))
+                colour2 = "Green";
             else
-                dir = "Back";
+                colour2 = "IR";
 
-            charts[0] = new IRChart(name + " " + dir + " Off");
-            charts[1] = new IRChart(name + " " + dir + " On");
-            charts[2] = new IRChart(name + " " + dir + " Diff");
-            charts[3] = new IRChart(name + " Side Off");
-            charts[4] = new IRChart(name + " Side On");
-            charts[5] = new IRChart(name + " Side Diff");
+            charts[0] = new ColourChart(name + " Off");
+            charts[1] = new ColourChart(name + " Red On");
+            charts[2] = new ColourChart(name + " " + colour2 + " On");
+            charts[3] = new ColourChart("");
+            charts[4] = new ColourChart(name + " Red Diff");
+            charts[5] = new ColourChart(name + " " + colour2 + " Diff");
 
             layoutPanel.ColumnCount = 3;
             layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -63,8 +63,8 @@ namespace Colour_Detection_display
                 String name = splitText[0];
                 String value = splitText[1];
                 int iValue = Convert.ToInt32(value);
-                
-                if(name.StartsWith(this.Text))
+
+                if (name.StartsWith(this.Text))
                 {
                     foreach (Chart chart in charts)
                     {
@@ -86,9 +86,9 @@ namespace Colour_Detection_display
             chart.ChartAreas[0].RecalculateAxesScale();
         }
 
-        class IRChart : Chart
+        class ColourChart : Chart
         {
-            public IRChart(string name)
+            public ColourChart(string name)
             {
                 string simpleName = name.Replace(" ", "_");
                 this.Dock = System.Windows.Forms.DockStyle.Fill;
