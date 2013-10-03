@@ -18,6 +18,8 @@ namespace Colour_Detection_display
         string currentPort = "";
         int plotLength = 50;
 
+        bool lockAxis = false;
+
         IRModule tpgIRFL = new IRModule("IRFL");
         IRModule tpgIRFR = new IRModule("IRFR");
         IRModule tpgIRBL = new IRModule("IRBL");
@@ -199,6 +201,39 @@ namespace Colour_Detection_display
         private void toolStripStatusPort_Click(object sender, EventArgs e)
         {
             toolStripConnect_Click(toolStripConnect, null);
+        }
+
+        private void lockAxisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            checkBox1_CheckedChanged(null, null);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            plotLength = (int)numericUpDown1.Value;
+            tpgIRFL.setPlotLength(plotLength);
+            tpgIRFR.setPlotLength(plotLength);
+            tpgIRBL.setPlotLength(plotLength);
+            tpgIRBR.setPlotLength(plotLength);
+            tpgGML.setPlotLength(plotLength);
+            tpgGMR.setPlotLength(plotLength);
+            tpgBALL.setPlotLength(plotLength);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            lockAxis = !lockAxis;
+
+            lockAxisToolStripMenuItem.Checked = lockAxis;
+            checkBox1.Checked = lockAxis;
+
+            tpgIRFL.setLockedAxis(lockAxis);
+            tpgIRFR.setLockedAxis(lockAxis);
+            tpgIRBL.setLockedAxis(lockAxis);
+            tpgIRBR.setLockedAxis(lockAxis);
+            tpgGML.setLockedAxis(lockAxis);
+            tpgGMR.setLockedAxis(lockAxis);
+            tpgBALL.setLockedAxis(lockAxis);
         }
     }
 }

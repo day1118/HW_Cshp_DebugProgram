@@ -86,16 +86,54 @@ namespace Colour_Detection_display
             chart.ChartAreas[0].RecalculateAxesScale();
         }
 
+        public void setLockedAxis(bool lockAxis)
+        {
+            foreach (Chart chart in charts)
+            {
+                if (lockAxis)
+                {
+                    chart.ChartAreas[0].AxisY.Maximum = 1024;
+                    chart.ChartAreas[0].AxisY.Minimum = 0;
+                }
+                else
+                {
+                    chart.ChartAreas[0].AxisY.Maximum = Double.NaN;
+                    chart.ChartAreas[0].AxisY.Minimum = Double.NaN;
+                }
+            }
+        }
+
+        public void setPlotLength(int newLength)
+        {
+            plotLength = newLength;
+        }
+
         class ColourChart : Chart
         {
             public ColourChart(string name)
             {
                 string simpleName = name.Replace(" ", "_");
+                string simpleNameUpper = simpleName.ToUpper();
                 this.Dock = System.Windows.Forms.DockStyle.Fill;
                 this.ChartAreas.Add(new ChartArea("chartArea"));
+
                 this.Titles.Add(name);
                 this.Name = simpleName;
                 this.Series.Add(simpleName);
+
+                System.Drawing.Color plotColour = System.Drawing.Color.Blue;
+
+                if (simpleNameUpper.Contains("RED"))
+                    plotColour = System.Drawing.Color.Red;
+                else if (simpleNameUpper.Contains("GREEN"))
+                    plotColour = System.Drawing.Color.Green;
+                else if (simpleNameUpper.Contains("OFF"))
+                    plotColour = System.Drawing.Color.Black;
+                else if (simpleNameUpper.Contains("IR"))
+                    plotColour = System.Drawing.Color.Blue;
+
+                this.Series[0].Color = plotColour;
+                this.Series[0].ChartType = SeriesChartType.Line;
             }   
         }
     }

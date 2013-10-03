@@ -54,6 +54,11 @@ namespace Colour_Detection_display
              this.Controls.Add(layoutPanel);
         }
 
+        public void setPlotLength(int newLength)
+        {
+            plotLength = newLength;
+        }
+
         public void addData(string text)
         {
             string[] splitText = text.Split(stringDelimiter);
@@ -71,6 +76,23 @@ namespace Colour_Detection_display
                         if (chart.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
                             addDataToChart(iValue, chart);
                     }
+                }
+            }
+        }
+
+        public void setLockedAxis(bool lockAxis)
+        {
+            foreach (Chart chart in charts)
+            {
+                if (lockAxis)
+                {
+                    chart.ChartAreas[0].AxisY.Maximum = 1024;
+                    chart.ChartAreas[0].AxisY.Minimum = 0;
+                }
+                else
+                {
+                    chart.ChartAreas[0].AxisY.Maximum = Double.NaN;
+                    chart.ChartAreas[0].AxisY.Minimum = Double.NaN;
                 }
             }
         }

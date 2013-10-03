@@ -29,17 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpgOverview = new System.Windows.Forms.TabPage();
             this.lstOverview = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tpgMatL = new System.Windows.Forms.TabPage();
-            this.tpgMatR = new System.Windows.Forms.TabPage();
-            this.tpgBallColour = new System.Windows.Forms.TabPage();
             this.tpgUltrasonics = new System.Windows.Forms.TabPage();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tpgCamera = new System.Windows.Forms.TabPage();
             this.tpgCustom = new System.Windows.Forms.TabPage();
+            this.tpgSettings = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusPort = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
@@ -47,23 +52,33 @@
             this.toolStripPort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripConnect = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockAxisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tpgOverview.SuspendLayout();
+            this.tpgUltrasonics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tpgSettings.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.statusStrip2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tpgOverview);
-            this.tabControl1.Controls.Add(this.tpgMatL);
-            this.tabControl1.Controls.Add(this.tpgMatR);
-            this.tabControl1.Controls.Add(this.tpgBallColour);
             this.tabControl1.Controls.Add(this.tpgUltrasonics);
             this.tabControl1.Controls.Add(this.tpgCamera);
             this.tabControl1.Controls.Add(this.tpgCustom);
+            this.tabControl1.Controls.Add(this.tpgSettings);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -87,6 +102,8 @@
             this.colName,
             this.colValue});
             this.lstOverview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstOverview.GridLines = true;
             this.lstOverview.Location = new System.Drawing.Point(0, 0);
             this.lstOverview.Name = "lstOverview";
             this.lstOverview.Size = new System.Drawing.Size(878, 848);
@@ -103,41 +120,31 @@
             // 
             this.colValue.Text = "Value";
             // 
-            // tpgMatL
-            // 
-            this.tpgMatL.Location = new System.Drawing.Point(4, 22);
-            this.tpgMatL.Name = "tpgMatL";
-            this.tpgMatL.Size = new System.Drawing.Size(878, 848);
-            this.tpgMatL.TabIndex = 5;
-            this.tpgMatL.Text = "MatL";
-            this.tpgMatL.UseVisualStyleBackColor = true;
-            // 
-            // tpgMatR
-            // 
-            this.tpgMatR.Location = new System.Drawing.Point(4, 22);
-            this.tpgMatR.Name = "tpgMatR";
-            this.tpgMatR.Size = new System.Drawing.Size(878, 848);
-            this.tpgMatR.TabIndex = 6;
-            this.tpgMatR.Text = "MatR";
-            this.tpgMatR.UseVisualStyleBackColor = true;
-            // 
-            // tpgBallColour
-            // 
-            this.tpgBallColour.Location = new System.Drawing.Point(4, 22);
-            this.tpgBallColour.Name = "tpgBallColour";
-            this.tpgBallColour.Size = new System.Drawing.Size(878, 848);
-            this.tpgBallColour.TabIndex = 7;
-            this.tpgBallColour.Text = "Ball Colour";
-            this.tpgBallColour.UseVisualStyleBackColor = true;
-            // 
             // tpgUltrasonics
             // 
+            this.tpgUltrasonics.Controls.Add(this.chart1);
             this.tpgUltrasonics.Location = new System.Drawing.Point(4, 22);
             this.tpgUltrasonics.Name = "tpgUltrasonics";
             this.tpgUltrasonics.Size = new System.Drawing.Size(878, 848);
             this.tpgUltrasonics.TabIndex = 8;
             this.tpgUltrasonics.Text = "Ultrasonics";
             this.tpgUltrasonics.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea8.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chart1.Legends.Add(legend8);
+            this.chart1.Location = new System.Drawing.Point(255, 495);
+            this.chart1.Name = "chart1";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chart1.Series.Add(series8);
+            this.chart1.Size = new System.Drawing.Size(300, 300);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
             // 
             // tpgCamera
             // 
@@ -156,6 +163,70 @@
             this.tpgCustom.TabIndex = 10;
             this.tpgCustom.Text = "Custom";
             this.tpgCustom.UseVisualStyleBackColor = true;
+            // 
+            // tpgSettings
+            // 
+            this.tpgSettings.Controls.Add(this.tableLayoutPanel1);
+            this.tpgSettings.Location = new System.Drawing.Point(4, 22);
+            this.tpgSettings.Name = "tpgSettings";
+            this.tpgSettings.Size = new System.Drawing.Size(878, 848);
+            this.tpgSettings.TabIndex = 11;
+            this.tpgSettings.Text = "Settings";
+            this.tpgSettings.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDown2, 1, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 200);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDown1.Location = new System.Drawing.Point(203, 3);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDown1.TabIndex = 1;
+            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label1.Size = new System.Drawing.Size(194, 26);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Plot Size";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // statusStrip2
             // 
@@ -177,7 +248,8 @@
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem1});
+            this.fileToolStripMenuItem1,
+            this.viewToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(886, 24);
@@ -214,6 +286,21 @@
             this.toolStripExit.Text = "Exit";
             this.toolStripExit.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lockAxisToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // lockAxisToolStripMenuItem
+            // 
+            this.lockAxisToolStripMenuItem.Name = "lockAxisToolStripMenuItem";
+            this.lockAxisToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.lockAxisToolStripMenuItem.Text = "Lock Axis";
+            this.lockAxisToolStripMenuItem.Click += new System.EventHandler(this.lockAxisToolStripMenuItem_Click);
+            // 
             // serialPort
             // 
             this.serialPort.BaudRate = 115200;
@@ -221,6 +308,59 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 26);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label2.Size = new System.Drawing.Size(194, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Lock Axis";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Location = new System.Drawing.Point(203, 29);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(194, 14);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 46);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label3.Size = new System.Drawing.Size(194, 26);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Averaging size";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDown2.Location = new System.Drawing.Point(203, 49);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDown2.TabIndex = 5;
+            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
@@ -236,10 +376,17 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpgOverview.ResumeLayout(false);
+            this.tpgUltrasonics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.tpgSettings.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,9 +400,6 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.TabPage tpgOverview;
-        private System.Windows.Forms.TabPage tpgMatL;
-        private System.Windows.Forms.TabPage tpgMatR;
-        private System.Windows.Forms.TabPage tpgBallColour;
         private System.Windows.Forms.TabPage tpgUltrasonics;
         private System.Windows.Forms.TabPage tpgCamera;
         private System.Windows.Forms.TabPage tpgCustom;
@@ -267,6 +411,17 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripConnect;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockAxisToolStripMenuItem;
+        private System.Windows.Forms.TabPage tpgSettings;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
 
     }
 }
