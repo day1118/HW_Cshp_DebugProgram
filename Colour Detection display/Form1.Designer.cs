@@ -49,7 +49,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpgOverview = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstOverview = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpgIRFL = new System.Windows.Forms.TabPage();
@@ -114,7 +114,7 @@
             // 
             // tpgOverview
             // 
-            this.tpgOverview.Controls.Add(this.listView1);
+            this.tpgOverview.Controls.Add(this.lstOverview);
             this.tpgOverview.Location = new System.Drawing.Point(4, 22);
             this.tpgOverview.Name = "tpgOverview";
             this.tpgOverview.Size = new System.Drawing.Size(878, 848);
@@ -122,18 +122,18 @@
             this.tpgOverview.Text = "Overview";
             this.tpgOverview.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // lstOverview
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstOverview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colValue});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(878, 848);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lstOverview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstOverview.Location = new System.Drawing.Point(0, 0);
+            this.lstOverview.Name = "lstOverview";
+            this.lstOverview.Size = new System.Drawing.Size(878, 848);
+            this.lstOverview.TabIndex = 0;
+            this.lstOverview.UseCompatibleStateImageBehavior = false;
+            this.lstOverview.View = System.Windows.Forms.View.Details;
             // 
             // colName
             // 
@@ -405,8 +405,9 @@
             // toolStripConnect
             // 
             this.toolStripConnect.Name = "toolStripConnect";
-            this.toolStripConnect.Size = new System.Drawing.Size(119, 22);
+            this.toolStripConnect.Size = new System.Drawing.Size(152, 22);
             this.toolStripConnect.Text = "Connect";
+            this.toolStripConnect.Click += new System.EventHandler(this.toolStripConnect_Click);
             // 
             // toolStripExit
             // 
@@ -470,7 +471,7 @@
         private System.Windows.Forms.TabPage tpgCamera;
         private System.Windows.Forms.TabPage tpgCustom;
         private System.Windows.Forms.ToolStripMenuItem toolStripExit;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstOverview;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colValue;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;

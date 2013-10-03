@@ -13,6 +13,9 @@ namespace Colour_Detection_display
 {
     public partial class Form1 : Form
     {
+        char stringDelimiter = ':';
+        string currentPort = "";
+
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +30,9 @@ namespace Colour_Detection_display
                 newToolStrip.Text = portName;
                 newToolStrip.Click += new System.EventHandler(this.toolStripPort_Click);
                 toolStripPort.DropDownItems.Add(newToolStrip);
-            }  
+            }
+
+            timer1.Enabled = true;
         }
 
         private void toolStripPort_Click(object sender, EventArgs e)
@@ -36,13 +41,9 @@ namespace Colour_Detection_display
             if(sender is ToolStripMenuItem)
             {
                 toolStripItem = (ToolStripMenuItem)sender;
-                toolStripStatusPort.Text = toolStripItem.Text;
-
-                foreach(ToolStripMenuItem tempToolStripItem in toolStripPort.DropDownItems)
-                {
-                    tempToolStripItem.Checked = false;
-                }
+                deselectToolStripPort();
                 toolStripItem.Checked = true;
+                currentPort = toolStripItem.Text;
             }
         }
 
@@ -53,6 +54,96 @@ namespace Colour_Detection_display
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            try
+            {
+                displayPortStatus();
+
+                if (serialPort.IsOpen)
+                {                   
+                    while (serialPort.BytesToRead > 0)
+                    {
+                        string text = serialPort.ReadLine();
+                        string[] splitText = text.Split(stringDelimiter);
+
+                        if (splitText.Length == 2)
+                        {
+                            String name = splitText[0];
+                            String value = splitText[1];
+
+                            ListViewItem existingItem = null;
+
+                            for (int i = 0; i < lstOverview.Items.Count; i++)
+                            {
+                                if (lstOverview.Items[i].Text.Equals(name))
+                                {
+                                    existingItem = lstOverview.Items[i];
+                                    break;
+                                }
+                            }
+
+                            if (existingItem == null)
+                            {
+                                ListViewItem newItem = new ListViewItem(name);
+                                newItem.SubItems.Add(value);
+                                lstOverview.Items.Add(newItem);
+                            }
+                            else
+                            {
+                                existingItem.SubItems[1].Text = value;
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                }
+            }
+            catch { }
+        }
+
+        private void deselectToolStripPort()
+        {
+            foreach (ToolStripMenuItem tempToolStripItem in toolStripPort.DropDownItems)
+            {
+                tempToolStripItem.Checked = false;
+            }
+        }
+
+        private void toolStripConnect_Click(object sender, EventArgs e)
+        {
+            if(serialPort.IsOpen)
+            {
+                serialPort.Close();
+            }
+            else
+            {
+                if (currentPort != "")
+                {
+                    serialPort.PortName = currentPort;
+                    serialPort.Open();
+                }
+            }
+        }
+
+        private void displayPortStatus()
+        {
+            string connectedStatus;
+            if (serialPort.IsOpen)
+            {
+                connectedStatus = "Connected";
+                toolStripConnect.Text = "Disconnect";
+            }
+            else
+            {
+                connectedStatus = "Not Connected";
+                toolStripConnect.Text = "Connect";
+            }
+            
+            if (currentPort != "")
+                toolStripStatusPort.Text = currentPort + " - " + connectedStatus;
+            else
+                toolStripStatusPort.Text = connectedStatus;
 
         }
     }
