@@ -20,7 +20,9 @@ namespace Colour_Detection_display
 
         bool lockAxis = false;
 
-        OverviewModule tpgOverview = new OverviewModule();
+        public static bool serialPortOpen = false;
+
+        OverviewModule tpgOverview = new OverviewModule("Overview");
         IRModule tpgIRFL = new IRModule("IRFL");
         IRModule tpgIRFR = new IRModule("IRFR");
         IRModule tpgIRBL = new IRModule("IRBL");
@@ -28,6 +30,10 @@ namespace Colour_Detection_display
         ColourModule tpgGML = new ColourModule("GML");
         ColourModule tpgGMR = new ColourModule("GMR");
         ColourModule tpgBALL = new ColourModule("BALL");
+        MotorsModule tpgMotors = new MotorsModule("MTR");
+        CameraModule tpgCamera = new CameraModule("Camera");
+        UltrasonicsModule tpgUltrasonics = new UltrasonicsModule("US");
+        CustomModule tpgCustom = new CustomModule("Custom");
 
         public Form1()
         {
@@ -54,6 +60,10 @@ namespace Colour_Detection_display
             tabControl1.TabPages.Add(tpgGML);
             tabControl1.TabPages.Add(tpgGMR);
             tabControl1.TabPages.Add(tpgBALL);
+            tabControl1.TabPages.Add(tpgUltrasonics);
+            tabControl1.TabPages.Add(tpgMotors);
+            tabControl1.TabPages.Add(tpgCamera);
+            tabControl1.TabPages.Add(tpgCustom);
             tabControl1.TabPages.Add(tpgSettings);
 
             if (toolStripPort.DropDownItems.Count > 0)
@@ -102,6 +112,10 @@ namespace Colour_Detection_display
                         tpgGML.addData(text);
                         tpgGMR.addData(text);
                         tpgBALL.addData(text);
+                        tpgUltrasonics.addData(text);
+                        tpgMotors.addData(text);
+                        tpgCamera.addData(text);
+                        tpgCustom.addData(text);
 
                         string[] splitText = text.Split(stringDelimiter);
 
@@ -156,6 +170,8 @@ namespace Colour_Detection_display
                 toolStripStatusPort.Text = currentPort + " - " + connectedStatus;
             else
                 toolStripStatusPort.Text = connectedStatus;
+
+            serialPortOpen = serialPort.IsOpen;
         }
 
         private void addDataToChart(int data, Chart chart)

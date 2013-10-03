@@ -12,9 +12,8 @@ namespace Colour_Detection_display
         ListView listView = new ListView();
         char stringDelimiter = ':';
         
-        public OverviewModule()
+        public OverviewModule(string name)
         {
-            string name = "Overview";
             this.Name = "tpg" + name;
             this.Text = name;
 
@@ -23,11 +22,13 @@ namespace Colour_Detection_display
             System.Windows.Forms.ColumnHeader colAvg = new System.Windows.Forms.ColumnHeader();
 
             colName.Text = "Name";
-            colName.Width = 134;
+            colName.Width = 230;
             
             colValue.Text = "Value";
+            colValue.Width = 100;
 
             colAvg.Text = "Average";
+            colAvg.Width = 100;
 
             listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             colName, colValue, colAvg});
@@ -51,19 +52,22 @@ namespace Colour_Detection_display
 
         private void TimerTick(Object sender, EventArgs e)
         {
-            ListItem expiredItem = null;
-            foreach (ListItem item in ListItem.itemList)
+            if (Form1.serialPortOpen)
             {
-               if(item.expired())
-               {
-                   expiredItem = item;
-               }
-            }
-            if (expiredItem != null)
-            {
-                listView.Items.Remove(expiredItem);
-                ListItem.itemList.Remove(expiredItem);
-                TimerTick(null, null);     // Run again incase there are more!
+                ListItem expiredItem = null;
+                foreach (ListItem item in ListItem.itemList)
+                {
+                    if (item.expired())
+                    {
+                        expiredItem = item;
+                    }
+                }
+                if (expiredItem != null)
+                {
+                    listView.Items.Remove(expiredItem);
+                    ListItem.itemList.Remove(expiredItem);
+                    TimerTick(null, null);     // Run again incase there are more!
+                }
             }
         }
 

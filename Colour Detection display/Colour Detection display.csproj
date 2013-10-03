@@ -47,7 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ColourModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomModule.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form1.cs">
@@ -59,11 +65,17 @@
     <Compile Include="IRModule.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MotorsModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="OverviewModule.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UltrasonicsModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

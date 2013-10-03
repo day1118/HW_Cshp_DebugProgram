@@ -29,18 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tpgUltrasonics = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tpgCamera = new System.Windows.Forms.TabPage();
-            this.tpgCustom = new System.Windows.Forms.TabPage();
             this.tpgSettings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusPort = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
@@ -52,26 +49,17 @@
             this.lockAxisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
-            this.tpgUltrasonics.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tpgSettings.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.statusStrip2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tpgUltrasonics);
-            this.tabControl1.Controls.Add(this.tpgCamera);
-            this.tabControl1.Controls.Add(this.tpgCustom);
             this.tabControl1.Controls.Add(this.tpgSettings);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
@@ -79,50 +67,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(886, 874);
             this.tabControl1.TabIndex = 1;
-            // 
-            // tpgUltrasonics
-            // 
-            this.tpgUltrasonics.Controls.Add(this.chart1);
-            this.tpgUltrasonics.Location = new System.Drawing.Point(4, 22);
-            this.tpgUltrasonics.Name = "tpgUltrasonics";
-            this.tpgUltrasonics.Size = new System.Drawing.Size(878, 848);
-            this.tpgUltrasonics.TabIndex = 8;
-            this.tpgUltrasonics.Text = "Ultrasonics";
-            this.tpgUltrasonics.UseVisualStyleBackColor = true;
-            // 
-            // chart1
-            // 
-            chartArea9.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chart1.Legends.Add(legend9);
-            this.chart1.Location = new System.Drawing.Point(255, 495);
-            this.chart1.Name = "chart1";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chart1.Series.Add(series9);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // tpgCamera
-            // 
-            this.tpgCamera.Location = new System.Drawing.Point(4, 22);
-            this.tpgCamera.Name = "tpgCamera";
-            this.tpgCamera.Size = new System.Drawing.Size(878, 848);
-            this.tpgCamera.TabIndex = 9;
-            this.tpgCamera.Text = "Camera";
-            this.tpgCamera.UseVisualStyleBackColor = true;
-            // 
-            // tpgCustom
-            // 
-            this.tpgCustom.Location = new System.Drawing.Point(4, 22);
-            this.tpgCustom.Name = "tpgCustom";
-            this.tpgCustom.Size = new System.Drawing.Size(878, 848);
-            this.tpgCustom.TabIndex = 10;
-            this.tpgCustom.Text = "Custom";
-            this.tpgCustom.UseVisualStyleBackColor = true;
             // 
             // tpgSettings
             // 
@@ -154,6 +98,32 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 200);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 46);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label3.Size = new System.Drawing.Size(194, 26);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Averaging size";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 26);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label2.Size = new System.Drawing.Size(194, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Lock Axis";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // numericUpDown1
             // 
@@ -187,6 +157,33 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Plot Size";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Location = new System.Drawing.Point(203, 29);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(194, 14);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDown2.Location = new System.Drawing.Point(203, 49);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDown2.TabIndex = 5;
+            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // statusStrip2
             // 
@@ -269,59 +266,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 26);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label2.Size = new System.Drawing.Size(194, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Lock Axis";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox1.Location = new System.Drawing.Point(203, 29);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(194, 14);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 46);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label3.Size = new System.Drawing.Size(194, 26);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Averaging size";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDown2.Location = new System.Drawing.Point(203, 49);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(194, 20);
-            this.numericUpDown2.TabIndex = 5;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDown2.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,17 +279,15 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tpgUltrasonics.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.tpgSettings.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,15 +300,11 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusPort;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
-        private System.Windows.Forms.TabPage tpgUltrasonics;
-        private System.Windows.Forms.TabPage tpgCamera;
-        private System.Windows.Forms.TabPage tpgCustom;
         private System.Windows.Forms.ToolStripMenuItem toolStripExit;
         private System.Windows.Forms.ToolStripMenuItem toolStripPort;
         private System.Windows.Forms.ToolStripMenuItem toolStripConnect;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lockAxisToolStripMenuItem;
         private System.Windows.Forms.TabPage tpgSettings;
