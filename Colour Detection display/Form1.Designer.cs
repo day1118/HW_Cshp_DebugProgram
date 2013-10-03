@@ -29,14 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tpgOverview = new System.Windows.Forms.TabPage();
-            this.lstOverview = new System.Windows.Forms.ListView();
-            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpgUltrasonics = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tpgCamera = new System.Windows.Forms.TabPage();
@@ -61,7 +57,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
-            this.tpgOverview.SuspendLayout();
             this.tpgUltrasonics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tpgSettings.SuspendLayout();
@@ -74,7 +69,6 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tpgOverview);
             this.tabControl1.Controls.Add(this.tpgUltrasonics);
             this.tabControl1.Controls.Add(this.tpgCamera);
             this.tabControl1.Controls.Add(this.tpgCustom);
@@ -85,40 +79,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(886, 874);
             this.tabControl1.TabIndex = 1;
-            // 
-            // tpgOverview
-            // 
-            this.tpgOverview.Controls.Add(this.lstOverview);
-            this.tpgOverview.Location = new System.Drawing.Point(4, 22);
-            this.tpgOverview.Name = "tpgOverview";
-            this.tpgOverview.Size = new System.Drawing.Size(878, 848);
-            this.tpgOverview.TabIndex = 2;
-            this.tpgOverview.Text = "Overview";
-            this.tpgOverview.UseVisualStyleBackColor = true;
-            // 
-            // lstOverview
-            // 
-            this.lstOverview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colName,
-            this.colValue});
-            this.lstOverview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstOverview.GridLines = true;
-            this.lstOverview.Location = new System.Drawing.Point(0, 0);
-            this.lstOverview.Name = "lstOverview";
-            this.lstOverview.Size = new System.Drawing.Size(878, 848);
-            this.lstOverview.TabIndex = 0;
-            this.lstOverview.UseCompatibleStateImageBehavior = false;
-            this.lstOverview.View = System.Windows.Forms.View.Details;
-            // 
-            // colName
-            // 
-            this.colName.Text = "Name";
-            this.colName.Width = 134;
-            // 
-            // colValue
-            // 
-            this.colValue.Text = "Value";
             // 
             // tpgUltrasonics
             // 
@@ -132,16 +92,16 @@
             // 
             // chart1
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart1.Legends.Add(legend8);
+            chartArea9.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart1.Legends.Add(legend9);
             this.chart1.Location = new System.Drawing.Point(255, 495);
             this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart1.Series.Add(series8);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart1.Series.Add(series9);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -375,7 +335,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tpgOverview.ResumeLayout(false);
             this.tpgUltrasonics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.tpgSettings.ResumeLayout(false);
@@ -399,14 +358,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusPort;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
-        private System.Windows.Forms.TabPage tpgOverview;
         private System.Windows.Forms.TabPage tpgUltrasonics;
         private System.Windows.Forms.TabPage tpgCamera;
         private System.Windows.Forms.TabPage tpgCustom;
         private System.Windows.Forms.ToolStripMenuItem toolStripExit;
-        private System.Windows.Forms.ListView lstOverview;
-        private System.Windows.Forms.ColumnHeader colName;
-        private System.Windows.Forms.ColumnHeader colValue;
         private System.Windows.Forms.ToolStripMenuItem toolStripPort;
         private System.Windows.Forms.ToolStripMenuItem toolStripConnect;
         private System.IO.Ports.SerialPort serialPort;

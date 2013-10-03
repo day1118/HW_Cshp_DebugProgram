@@ -20,6 +20,7 @@ namespace Colour_Detection_display
 
         bool lockAxis = false;
 
+        OverviewModule tpgOverview = new OverviewModule();
         IRModule tpgIRFL = new IRModule("IRFL");
         IRModule tpgIRFR = new IRModule("IRFR");
         IRModule tpgIRBL = new IRModule("IRBL");
@@ -44,6 +45,8 @@ namespace Colour_Detection_display
                 toolStripPort.DropDownItems.Add(newToolStrip);
             }
 
+            tabControl1.TabPages.Remove(tpgSettings);
+            tabControl1.TabPages.Add(tpgOverview);
             tabControl1.TabPages.Add(tpgIRFL);
             tabControl1.TabPages.Add(tpgIRFR);
             tabControl1.TabPages.Add(tpgIRBL);
@@ -51,6 +54,7 @@ namespace Colour_Detection_display
             tabControl1.TabPages.Add(tpgGML);
             tabControl1.TabPages.Add(tpgGMR);
             tabControl1.TabPages.Add(tpgBALL);
+            tabControl1.TabPages.Add(tpgSettings);
 
             if (toolStripPort.DropDownItems.Count > 0)
             {
@@ -90,7 +94,7 @@ namespace Colour_Detection_display
                     while (serialPort.BytesToRead > 0)
                     {
                         string text = serialPort.ReadLine();
-                        addStringToOverviewList(text);
+                        tpgOverview.addData(text);
                         tpgIRFL.addData(text);
                         tpgIRFR.addData(text);
                         tpgIRBL.addData(text);
@@ -152,39 +156,6 @@ namespace Colour_Detection_display
                 toolStripStatusPort.Text = currentPort + " - " + connectedStatus;
             else
                 toolStripStatusPort.Text = connectedStatus;
-        }
-
-        private void addStringToOverviewList(string text)
-        {
-            string[] splitText = text.Split(stringDelimiter);
-
-            if (splitText.Length == 2)
-            {
-                String name = splitText[0];
-                String value = splitText[1];
-
-                ListViewItem existingItem = null;
-
-                for (int i = 0; i < lstOverview.Items.Count; i++)
-                {
-                    if (lstOverview.Items[i].Text.Equals(name))
-                    {
-                        existingItem = lstOverview.Items[i];
-                        break;
-                    }
-                }
-
-                if (existingItem == null)
-                {
-                    ListViewItem newItem = new ListViewItem(name);
-                    newItem.SubItems.Add(value);
-                    lstOverview.Items.Add(newItem);
-                }
-                else
-                {
-                    existingItem.SubItems[1].Text = value;
-                }
-            }
         }
 
         private void addDataToChart(int data, Chart chart)
