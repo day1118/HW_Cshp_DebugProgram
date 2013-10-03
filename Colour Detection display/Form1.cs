@@ -18,7 +18,10 @@ namespace Colour_Detection_display
         string currentPort = "";
         int plotLength = 50;
 
-        IRModlue tpgIRFLTemp = new IRModlue("IRFL");
+        IRModlue tpgIRFL = new IRModlue("IRFL");
+        IRModlue tpgIRFR = new IRModlue("IRFR");
+        IRModlue tpgIRBL = new IRModlue("IRBL");
+        IRModlue tpgIRBR = new IRModlue("IRBR");
 
         public Form1()
         {
@@ -37,7 +40,10 @@ namespace Colour_Detection_display
             }
 
             
-            tabControl1.TabPages.Add(tpgIRFLTemp);
+            tabControl1.TabPages.Add(tpgIRFL);
+            tabControl1.TabPages.Add(tpgIRFR);
+            tabControl1.TabPages.Add(tpgIRBL);
+            tabControl1.TabPages.Add(tpgIRBR);
 
             timer1.Enabled = true;
         }
@@ -71,38 +77,14 @@ namespace Colour_Detection_display
                     {
                         string text = serialPort.ReadLine();
                         addStringToOverviewList(text);
-                        tpgIRFLTemp.addData(text);
+                        tpgIRFL.addData(text);
+                        tpgIRFR.addData(text);
+                        tpgIRBL.addData(text);
+                        tpgIRBR.addData(text);
+
 
                         string[] splitText = text.Split(stringDelimiter);
 
-                        if (splitText.Length == 2)
-                        {
-                            String name = splitText[0];
-                            String value = splitText[1];
-                            int iValue = Convert.ToInt32(value);
-
-                            switch (name)
-                            {
-                                case "IRFL_FRONT_Off":
-                                    addDataToChart(iValue, chtIRFL_Front_Off);
-                                    break;
-                                case "IRFL_FRONT_On":
-                                    addDataToChart(iValue, chtIRFL_Front_On);
-                                    break;
-                                case "IRFL_FRONT_Diff":
-                                    addDataToChart(iValue, chtIRFL_Front_Diff);
-                                    break;
-                                case "IRFL_SIDE_Off":
-                                    addDataToChart(iValue, chtIRFL_Side_Off);
-                                    break;
-                                case "IRFL_SIDE_On":
-                                    addDataToChart(iValue, chtIRFL_Side_On);
-                                    break;
-                                case "IRFL_SIDE_Diff":
-                                    addDataToChart(iValue, chtIRFL_Side_Diff);
-                                    break;
-                            }       
-                        }
                     }
                 }
                 else
