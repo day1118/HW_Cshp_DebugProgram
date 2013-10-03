@@ -39,11 +39,17 @@ namespace Colour_Detection_display
                 toolStripPort.DropDownItems.Add(newToolStrip);
             }
 
-            
             tabControl1.TabPages.Add(tpgIRFL);
             tabControl1.TabPages.Add(tpgIRFR);
             tabControl1.TabPages.Add(tpgIRBL);
             tabControl1.TabPages.Add(tpgIRBR);
+
+            if (toolStripPort.DropDownItems.Count > 0)
+            {
+                // Select the first port avaliable as a guess
+                toolStripPort_Click(toolStripPort.DropDownItems[0], null);
+                toolStripConnect_Click(toolStripConnect, null);
+            }
 
             timer1.Enabled = true;
         }
@@ -180,6 +186,11 @@ namespace Colour_Detection_display
             
             chart.Series[0].Points.AddY(data);
             chart.ChartAreas[0].RecalculateAxesScale();
+        }
+
+        private void toolStripStatusPort_Click(object sender, EventArgs e)
+        {
+            toolStripConnect_Click(toolStripConnect, null);
         }
     }
 }

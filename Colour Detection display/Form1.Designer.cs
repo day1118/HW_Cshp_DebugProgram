@@ -172,6 +172,7 @@
             this.toolStripStatusPort.Name = "toolStripStatusPort";
             this.toolStripStatusPort.Size = new System.Drawing.Size(88, 17);
             this.toolStripStatusPort.Text = "Not Connected";
+            this.toolStripStatusPort.Click += new System.EventHandler(this.toolStripStatusPort_Click);
             // 
             // menuStrip2
             // 
