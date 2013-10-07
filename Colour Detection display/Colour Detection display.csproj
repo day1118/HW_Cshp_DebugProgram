@@ -76,6 +76,9 @@
     <Compile Include="SafeSerialPort.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ServoModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UltrasonicsModule.cs">
       <SubType>Component</SubType>
     </Compile>

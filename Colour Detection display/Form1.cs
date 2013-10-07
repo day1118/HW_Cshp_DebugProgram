@@ -34,6 +34,7 @@ namespace Colour_Detection_display
         ColourModule tpgGMR = new ColourModule("GMR");
         ColourModule tpgBALL = new ColourModule("BALL");
         MotorsModule tpgMotors = new MotorsModule("MTR");
+        ServoModule tpgServos = new ServoModule("Servo");
         CameraModule tpgCamera = new CameraModule("Camera");
         UltrasonicsModule tpgUltrasonics = new UltrasonicsModule("US");
         CustomModule tpgCustom = new CustomModule("Custom");
@@ -58,6 +59,7 @@ namespace Colour_Detection_display
             tabControl1.TabPages.Add(tpgBALL);
             tabControl1.TabPages.Add(tpgUltrasonics);
             tabControl1.TabPages.Add(tpgMotors);
+            tabControl1.TabPages.Add(tpgServos);
             tabControl1.TabPages.Add(tpgCamera);
             tabControl1.TabPages.Add(tpgCustom);
             tabControl1.TabPages.Add(tpgSettings);
@@ -102,18 +104,30 @@ namespace Colour_Detection_display
                         string text = serialPort.ReadLine();
                         if (text != "")
                         {
-                            tpgOverview.addData(text);
-                            tpgIRFL.addData(text);
-                            tpgIRFR.addData(text);
-                            tpgIRBL.addData(text);
-                            tpgIRBR.addData(text);
-                            tpgGML.addData(text);
-                            tpgGMR.addData(text);
-                            tpgBALL.addData(text);
-                            tpgUltrasonics.addData(text);
-                            tpgMotors.addData(text);
-                            tpgCamera.addData(text);
-                            tpgCustom.addData(text);
+                              string[] splitText = text.Split(stringDelimiter);
+
+                              if (splitText.Length == 2)
+                              {
+                                  String name = splitText[0];
+                                  String value = splitText[1];
+                                  int iValue;
+                                  if (Int32.TryParse(value, out iValue))
+                                  {
+                                      tpgOverview.addData(text);
+                                      tpgIRFL.addData(text);
+                                      tpgIRFR.addData(text);
+                                      tpgIRBL.addData(text);
+                                      tpgIRBR.addData(text);
+                                      tpgGML.addData(text);
+                                      tpgGMR.addData(text);
+                                      tpgBALL.addData(text);
+                                      tpgUltrasonics.addData(text);
+                                      tpgServos.addData(text);
+                                      tpgMotors.addData(text);
+                                      tpgCamera.addData(text);
+                                      tpgCustom.addData(text);
+                                  }
+                              }
                         }
                     }
                     serialPort.Write(" ");      // Used to test if we still have a connection
