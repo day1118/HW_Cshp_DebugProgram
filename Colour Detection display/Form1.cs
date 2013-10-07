@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using System.IO.Ports;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -19,6 +20,8 @@ namespace Colour_Detection_display
         int plotLength = 50;
 
         bool lockAxis = false;
+
+        SafeSerialPort serialPort;
 
         public static bool serialPortOpen = false;
 
@@ -42,14 +45,7 @@ namespace Colour_Detection_display
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            foreach (string portName in SerialPort.GetPortNames())
-            {
-                ToolStripMenuItem newToolStrip = new ToolStripMenuItem();
-                newToolStrip.Name = "toolStrip" + portName;
-                newToolStrip.Text = portName;
-                newToolStrip.Click += new System.EventHandler(this.toolStripPort_Click);
-                toolStripPort.DropDownItems.Add(newToolStrip);
-            }
+            updateSerialPortList();
 
             tabControl1.TabPages.Remove(tpgSettings);
             tabControl1.TabPages.Add(tpgOverview);
@@ -79,7 +75,7 @@ namespace Colour_Detection_display
         private void toolStripPort_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem toolStripItem;
-            if(sender is ToolStripMenuItem)
+            if (sender is ToolStripMenuItem)
             {
                 toolStripItem = (ToolStripMenuItem)sender;
                 deselectToolStripPort();
@@ -97,35 +93,46 @@ namespace Colour_Detection_display
         {
             try
             {
+                updateSerialPortList();
                 displayPortStatus();
-
-                if (serialPort.IsOpen)
+                if (serialPort != null && serialPort.IsOpen)
                 {
                     while (serialPort.BytesToRead > 0)
                     {
                         string text = serialPort.ReadLine();
-                        tpgOverview.addData(text);
-                        tpgIRFL.addData(text);
-                        tpgIRFR.addData(text);
-                        tpgIRBL.addData(text);
-                        tpgIRBR.addData(text);
-                        tpgGML.addData(text);
-                        tpgGMR.addData(text);
-                        tpgBALL.addData(text);
-                        tpgUltrasonics.addData(text);
-                        tpgMotors.addData(text);
-                        tpgCamera.addData(text);
-                        tpgCustom.addData(text);
-
-                        string[] splitText = text.Split(stringDelimiter);
-
+                        if (text != "")
+                        {
+                            tpgOverview.addData(text);
+                            tpgIRFL.addData(text);
+                            tpgIRFR.addData(text);
+                            tpgIRBL.addData(text);
+                            tpgIRBR.addData(text);
+                            tpgGML.addData(text);
+                            tpgGMR.addData(text);
+                            tpgBALL.addData(text);
+                            tpgUltrasonics.addData(text);
+                            tpgMotors.addData(text);
+                            tpgCamera.addData(text);
+                            tpgCustom.addData(text);
+                        }
                     }
+                    serialPort.Write(" ");      // Used to test if we still have a connection
                 }
                 else
                 {
                 }
             }
-            catch { }
+            catch (IOException exception)
+            {
+                serialPort.Dispose();
+            }
+            catch (TimeoutException exception)
+            {
+                serialPort.Dispose();
+            }
+            catch (Exception exception)
+            {
+            }
         }
 
         private void deselectToolStripPort()
@@ -138,7 +145,7 @@ namespace Colour_Detection_display
 
         private void toolStripConnect_Click(object sender, EventArgs e)
         {
-            if(serialPort.IsOpen)
+            if (serialPort != null && serialPort.IsOpen)
             {
                 serialPort.Close();
             }
@@ -146,7 +153,8 @@ namespace Colour_Detection_display
             {
                 if (currentPort != "")
                 {
-                    serialPort.PortName = currentPort;
+                    serialPort = new SafeSerialPort(currentPort, 115200, Parity.None, 8, StopBits.One);
+                    serialPort.ReadTimeout = 100;
                     serialPort.Open();
                 }
             }
@@ -155,23 +163,23 @@ namespace Colour_Detection_display
         private void displayPortStatus()
         {
             string connectedStatus;
-            if (serialPort.IsOpen)
+            if (serialPort != null && serialPort.IsOpen)
             {
                 connectedStatus = "Connected";
                 toolStripConnect.Text = "Disconnect";
+                serialPortOpen = true;
             }
             else
             {
                 connectedStatus = "Not Connected";
                 toolStripConnect.Text = "Connect";
+                serialPortOpen = false;
             }
-            
+
             if (currentPort != "")
                 toolStripStatusPort.Text = currentPort + " - " + connectedStatus;
             else
                 toolStripStatusPort.Text = connectedStatus;
-
-            serialPortOpen = serialPort.IsOpen;
         }
 
         private void addDataToChart(int data, Chart chart)
@@ -180,7 +188,7 @@ namespace Colour_Detection_display
             {
                 chart.Series[0].Points.RemoveAt(0);
             }
-            
+
             chart.Series[0].Points.AddY(data);
             chart.ChartAreas[0].RecalculateAxesScale();
         }
@@ -221,6 +229,55 @@ namespace Colour_Detection_display
             tpgGML.setLockedAxis(lockAxis);
             tpgGMR.setLockedAxis(lockAxis);
             tpgBALL.setLockedAxis(lockAxis);
+        }
+
+        private void updateSerialPortList()
+        {
+            foreach (ToolStripMenuItem menuItem in toolStripPort.DropDownItems)
+                menuItem.Tag = false;   // Use tag to record if the port still exists
+
+            String[] portNames = SerialPort.GetPortNames();
+            foreach (string portName in portNames)
+            {
+                bool found = false;
+                foreach (ToolStripMenuItem menuItem in toolStripPort.DropDownItems)
+                {
+                    if (menuItem.Text.Equals(portName))
+                    {
+                        found = true;
+                        menuItem.Tag = true;
+                    }
+                }
+
+                if (!found)
+                {
+                    addPortToList(portName);
+                }
+            }
+
+            for (int i = 0; i < toolStripPort.DropDownItems.Count; i++)
+            {
+                ToolStripItem menuItem = toolStripPort.DropDownItems[i];
+                if (!(bool)menuItem.Tag)
+                {
+                    toolStripPort.DropDownItems.Remove(menuItem);
+                    if (menuItem.Text.Equals(currentPort))
+                        currentPort = "";
+                }
+            }
+        }
+
+        private void addPortToList(String portName)
+        {
+            ToolStripMenuItem newToolStrip = new ToolStripMenuItem();
+            newToolStrip.Name = "toolStrip" + portName;
+            newToolStrip.Text = portName;
+            newToolStrip.Tag = true;
+            newToolStrip.Click += new System.EventHandler(this.toolStripPort_Click);
+            toolStripPort.DropDownItems.Add(newToolStrip);
+
+            if (currentPort.Equals(""))
+                toolStripPort_Click(newToolStrip, null);
         }
     }
 }

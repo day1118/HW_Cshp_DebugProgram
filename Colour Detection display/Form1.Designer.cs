@@ -47,7 +47,6 @@
             this.toolStripExit = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockAxisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tpgSettings.SuspendLayout();
@@ -258,10 +257,6 @@
             this.lockAxisToolStripMenuItem.Text = "Lock Axis";
             this.lockAxisToolStripMenuItem.Click += new System.EventHandler(this.lockAxisToolStripMenuItem_Click);
             // 
-            // serialPort
-            // 
-            this.serialPort.BaudRate = 115200;
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
@@ -303,7 +298,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripExit;
         private System.Windows.Forms.ToolStripMenuItem toolStripPort;
         private System.Windows.Forms.ToolStripMenuItem toolStripConnect;
-        private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lockAxisToolStripMenuItem;
