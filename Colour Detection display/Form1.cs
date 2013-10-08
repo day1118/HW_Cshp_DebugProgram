@@ -39,6 +39,7 @@ namespace Colour_Detection_display
         EncoderModule tpgEncoderRight = new EncoderModule("ENC_Right");
         CameraModule tpgCamera = new CameraModule("Camera");
         UltrasonicsModule tpgUltrasonics = new UltrasonicsModule("US");
+        MicroswitchModule tpgMicroswitchs = new MicroswitchModule("Micro");
         CustomModule tpgCustom = new CustomModule("Custom");
 
         public Form1()
@@ -65,8 +66,11 @@ namespace Colour_Detection_display
             tabControl1.TabPages.Add(tpgEncoderLeft);
             tabControl1.TabPages.Add(tpgEncoderRight);
             tabControl1.TabPages.Add(tpgCamera);
+            tabControl1.TabPages.Add(tpgMicroswitchs);
             tabControl1.TabPages.Add(tpgCustom);
             tabControl1.TabPages.Add(tpgSettings);
+
+            tpgCustom.setup(tabControl1);
 
             if (toolStripPort.DropDownItems.Count > 0)
             {
@@ -131,6 +135,7 @@ namespace Colour_Detection_display
                                       tpgEncoderRight.addData(text);
                                       tpgMotors.addData(text);
                                       tpgCamera.addData(text);
+                                      tpgMicroswitchs.addData(text);
                                       tpgCustom.addData(text);
                                   }
                               }

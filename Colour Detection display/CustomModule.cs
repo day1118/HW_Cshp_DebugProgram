@@ -14,6 +14,8 @@ namespace Colour_Detection_display
         TextBox[] textboxs = new CustomTextbox[6];
         int plotLength = 50;
         char stringDelimiter = ':';
+
+        TabControl tabControl;
       
         public CustomModule(string name)
         {
@@ -62,6 +64,17 @@ namespace Colour_Detection_display
         public void addData(string text)
         {
         }
+
+        public void setup(TabControl newTabControl)
+        {
+            tabControl = newTabControl;
+            CustomTextbox.setup(tabControl);
+        }
+
+        private void textbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     class CustomChart : Chart
@@ -79,6 +92,8 @@ namespace Colour_Detection_display
 
     class CustomTextbox: TextBox
     {
+        static TabControl tabControl;
+
         public CustomTextbox(string name)
         {
             string simpleName = name.Replace(" ", "_");
@@ -89,10 +104,24 @@ namespace Colour_Detection_display
             this.TextChanged += new System.EventHandler(this.textbox_TextChanged);
         }
 
+        public static void setup(TabControl newTabControl)
+        {
+            tabControl = newTabControl;
+        }
+
         private void textbox_TextChanged(object sender, EventArgs e)
         {
-            object a = this;//.parent.parent;
+            TextBox textbox;
+            String name;
+            if (sender is TextBox)
+            {
+                textbox = (TextBox)sender;
+                name = textbox.Text;
 
+                foreach (TabPage tabPage in tabControl.TabPages)
+                {
+                }
+            }
         }
     }
 }
