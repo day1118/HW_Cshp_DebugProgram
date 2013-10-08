@@ -9,6 +9,8 @@ namespace Colour_Detection_display
 {
     class CameraModule : TabPage
     {
+        char stringDelimiter = ':';
+
         TableLayoutPanel layoutPanel = new TableLayoutPanel();
         Chart[] charts = new CameraChart[2];
         int rows = 1;
@@ -44,6 +46,27 @@ namespace Colour_Detection_display
 
         public void addData(string text)
         {
+            string[] splitText = text.Split(stringDelimiter);
+
+            if (splitText.Length == 131)
+            {
+                String name = splitText[0];
+
+                if (name.Equals("CAM_RAW"))
+                {
+                    while (charts[0].Series[0].Points.Count > 0)
+                        charts[0].Series[0].Points.RemoveAt(0);
+
+                    for (int i = 1; i < splitText.Length; i++)
+                    {
+                        String value = splitText[i];
+                        int iValue = Convert.ToInt32(value);
+                        charts[0].Series[0].Points.AddXY(i, iValue);
+                    }
+
+                    charts[0].ChartAreas[0].RecalculateAxesScale();
+                }
+            }
         }
 
         class CameraChart : Chart

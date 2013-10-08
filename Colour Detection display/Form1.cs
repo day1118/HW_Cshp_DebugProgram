@@ -35,6 +35,7 @@ namespace Colour_Detection_display
         ColourModule tpgBALL = new ColourModule("BALL");
         MotorsModule tpgMotors = new MotorsModule("MTR");
         ServoModule tpgServos = new ServoModule("Servo");
+        EncoderModule tpgEncoders = new EncoderModule("ENC");
         CameraModule tpgCamera = new CameraModule("Camera");
         UltrasonicsModule tpgUltrasonics = new UltrasonicsModule("US");
         CustomModule tpgCustom = new CustomModule("Custom");
@@ -60,6 +61,7 @@ namespace Colour_Detection_display
             tabControl1.TabPages.Add(tpgUltrasonics);
             tabControl1.TabPages.Add(tpgMotors);
             tabControl1.TabPages.Add(tpgServos);
+            tabControl1.TabPages.Add(tpgEncoders);
             tabControl1.TabPages.Add(tpgCamera);
             tabControl1.TabPages.Add(tpgCustom);
             tabControl1.TabPages.Add(tpgSettings);
@@ -123,10 +125,15 @@ namespace Colour_Detection_display
                                       tpgBALL.addData(text);
                                       tpgUltrasonics.addData(text);
                                       tpgServos.addData(text);
+                                      tpgEncoders.addData(text);
                                       tpgMotors.addData(text);
                                       tpgCamera.addData(text);
                                       tpgCustom.addData(text);
                                   }
+                              }
+                              else
+                              {
+                                  tpgCamera.addData(text);
                               }
                         }
                     }
