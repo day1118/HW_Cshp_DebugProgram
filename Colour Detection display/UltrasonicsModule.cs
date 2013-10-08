@@ -14,13 +14,16 @@ namespace Colour_Detection_display
         int rows = 1;
         int cols = 2;
 
+        int plotLength = 50;
+        char stringDelimiter = ':';
+
         public UltrasonicsModule(string name)
         {
             this.Name = "tpg" + name;
             this.Text = "Ultrasonics";
 
-            charts[0] = new USChart(name + " Front");
-            charts[1] = new USChart(name + " Back");
+            charts[0] = new USChart(name + " Front cm");
+            charts[1] = new USChart(name + " Back cm");
 
             layoutPanel.ColumnCount = cols;
             layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -44,6 +47,34 @@ namespace Colour_Detection_display
 
         public void addData(string text)
         {
+            string[] splitText = text.Split(stringDelimiter);
+
+            if (splitText.Length == 2)
+            {
+                String name = splitText[0];
+                String value = splitText[1];
+                int iValue = Convert.ToInt32(value);
+
+                if (name.StartsWith("US"))
+                {
+                    foreach (Chart chart in charts)
+                    {
+                        if (chart.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+                            addDataToChart(iValue, chart);
+                    }
+                }
+            }
+        }
+
+        private void addDataToChart(int data, Chart chart)
+        {
+            while (chart.Series[0].Points.Count > plotLength)
+            {
+                chart.Series[0].Points.RemoveAt(0);
+            }
+
+            chart.Series[0].Points.AddY(data);
+            chart.ChartAreas[0].RecalculateAxesScale();
         }
 
         class USChart : Chart

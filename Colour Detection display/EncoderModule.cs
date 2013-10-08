@@ -23,19 +23,20 @@ namespace Colour_Detection_display
             this.Name = "tpg" + name;
             this.Text = name;
 
-            charts[0] = new EncoderChart(name + " Left");
-            charts[1] = new EncoderChart(name + " State Left");
-            charts[2] = new EncoderChart(name + " Count Left");
-            charts[3] = new EncoderChart(name + " Right");
-            charts[4] = new EncoderChart(name + " State Right");
-            charts[5] = new EncoderChart(name + " Count Right");
+            charts[0] = new EncoderChart(name + " Off");
+            charts[1] = new EncoderChart(name + " On");
+            charts[2] = new EncoderChart(name + " Diff");
+            charts[3] = new EncoderChart("");
+            charts[4] = new EncoderChart(name + " State");
+            charts[5] = new EncoderChart(name + " Count");
 
             layoutPanel.ColumnCount = cols;
-            layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F / cols));
+            layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F / cols));
+            layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F / cols));
             layoutPanel.RowCount = rows;
-            layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F / rows));
+            layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F / rows));
 
             for (int row = 0; row < rows; row++)
             {
