@@ -103,9 +103,6 @@ namespace Colour_Detection_display
         {
             try
             {
-                for(int i = 0; i < 100; i++)
-                    tpgIRFL.addData("IRFL_FRONT_On:"+ i);
-
                 updateSerialPortList();
                 displayPortStatus();
                 if (serialPort != null && serialPort.IsOpen)

@@ -12,7 +12,7 @@ namespace Colour_Detection_display
         protected TableLayoutPanel layoutPanel = new TableLayoutPanel();
         protected CustomChart[] charts;
         protected int plotLength = 50;
-        char stringDelimiter = ':';
+        protected char stringDelimiter = ':';
 
         public CustomTabPage(string name, string text)
         {
@@ -67,7 +67,7 @@ namespace Colour_Detection_display
             }
         }
 
-        private void addDataToChart(int data, Chart chart)
+        protected void addDataToChart(int data, Chart chart)
         {
             while (chart.Series[0].Points.Count > plotLength)
             {
@@ -89,6 +89,19 @@ namespace Colour_Detection_display
             this.Titles.Add(name);
             this.Name = simpleName;
             this.Series.Add(simpleName);
+        }
+
+        public void clear()
+        {
+            while (this.Series[0].Points.Count > 0)
+                this.Series[0].Points.RemoveAt(0);
+        }
+
+        public void setTitle(String title)
+        {
+            while (this.Titles.Count > 0)
+                this.Titles.RemoveAt(0);
+            this.Titles.Add(title);
         }
     }
 }
