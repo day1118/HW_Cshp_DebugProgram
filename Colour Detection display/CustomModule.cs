@@ -92,7 +92,7 @@ namespace Colour_Detection_display
 
     class CustomTextbox: TextBox
     {
-        static TabControl tabControl;
+        static CustomTabPage[] tabPages;
 
         public CustomTextbox(string name)
         {
@@ -104,9 +104,9 @@ namespace Colour_Detection_display
             this.TextChanged += new System.EventHandler(this.textbox_TextChanged);
         }
 
-        public static void setup(TabControl newTabControl)
+        public static void setup(CustomTabPage[] newTabPages)
         {
-            tabControl = newTabControl;
+            tabPages = newTabPages;
         }
 
         private void textbox_TextChanged(object sender, EventArgs e)
