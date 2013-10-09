@@ -258,6 +258,7 @@ namespace Colour_Detection_display
             tpgGML.setLockedAxis(lockAxis);
             tpgGMR.setLockedAxis(lockAxis);
             tpgBALL.setLockedAxis(lockAxis);
+            tpgCamera.setLockedAxis(lockAxis);
         }
 
         private void updateSerialPortList()
@@ -307,6 +308,14 @@ namespace Colour_Detection_display
 
             if (currentPort.Equals(""))
                 toolStripPort_Click(newToolStrip, null);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                toolStripConnect_Click(toolStripConnect, null);
+            }
         }
     }
 }

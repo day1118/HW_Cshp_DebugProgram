@@ -26,7 +26,7 @@ namespace Colour_Detection_display
             charts[0] = new EncoderChart(name + " Off");
             charts[1] = new EncoderChart(name + " On");
             charts[2] = new EncoderChart(name + " Diff");
-            charts[3] = new EncoderChart("");
+            charts[3] = new EncoderChart(name + " Motor Speed");
             charts[4] = new EncoderChart(name + " State");
             charts[5] = new EncoderChart(name + " Count");
 

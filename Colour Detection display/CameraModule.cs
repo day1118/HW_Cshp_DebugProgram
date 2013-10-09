@@ -69,6 +69,23 @@ namespace Colour_Detection_display
             }
         }
 
+        public void setLockedAxis(bool lockAxis)
+        {
+            foreach (Chart chart in charts)
+            {
+                if (lockAxis)
+                {
+                    chart.ChartAreas[0].AxisY.Maximum = 1024;
+                    chart.ChartAreas[0].AxisY.Minimum = 0;
+                }
+                else
+                {
+                    chart.ChartAreas[0].AxisY.Maximum = Double.NaN;
+                    chart.ChartAreas[0].AxisY.Minimum = Double.NaN;
+                }
+            }
+        }
+
         class CameraChart : Chart
         {
             public CameraChart(string name)
