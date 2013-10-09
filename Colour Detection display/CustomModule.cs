@@ -10,7 +10,7 @@ namespace Colour_Detection_display
     class CustomModule : TabPage
     {
         TableLayoutPanel layoutPanel = new TableLayoutPanel();
-        Chart[] charts = new CustomChart[6];
+        Chart[] charts = new CustomTabChart[6];
         TextBox[] textboxs = new CustomTextbox[6];
         int plotLength = 50;
         char stringDelimiter = ':';
@@ -22,12 +22,12 @@ namespace Colour_Detection_display
             this.Name = "tpg" + name;
             this.Text = name;
 
-            charts[0] = new CustomChart(name + " 1");
-            charts[1] = new CustomChart(name + " 2");
-            charts[2] = new CustomChart(name + " 3");
-            charts[3] = new CustomChart(name + " 4");
-            charts[4] = new CustomChart(name + " 5");
-            charts[5] = new CustomChart(name + " 6");
+            charts[0] = new CustomTabChart(name + " 1");
+            charts[1] = new CustomTabChart(name + " 2");
+            charts[2] = new CustomTabChart(name + " 3");
+            charts[3] = new CustomTabChart(name + " 4");
+            charts[4] = new CustomTabChart(name + " 5");
+            charts[5] = new CustomTabChart(name + " 6");
 
             textboxs[0] = new CustomTextbox(name + " 1");
             textboxs[1] = new CustomTextbox(name + " 2");
@@ -77,9 +77,9 @@ namespace Colour_Detection_display
         }
     }
 
-    class CustomChart : Chart
+    class CustomTabChart : Chart
     {
-        public CustomChart(string name)
+        public CustomTabChart(string name)
         {
             string simpleName = name.Replace(" ", "_");
             this.Dock = System.Windows.Forms.DockStyle.Fill;
