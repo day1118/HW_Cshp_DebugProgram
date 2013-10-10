@@ -21,6 +21,8 @@ namespace Colour_Detection_display
 
         bool lockAxis = false;
 
+        bool waitingToConnect = false;
+
         SafeSerialPort serialPort;
 
         public static bool serialPortOpen = false;
@@ -103,6 +105,14 @@ namespace Colour_Detection_display
         {
             try
             {
+                if (serialPort != null && !serialPort.IsOpen)
+                {
+                    if (waitingToConnect)
+                    {
+                        toolStripConnect_Click(toolStripConnect, null);
+                    }
+                }
+
                 updateSerialPortList();
                 displayPortStatus();
                 if (serialPort != null && serialPort.IsOpen)
@@ -185,6 +195,7 @@ namespace Colour_Detection_display
                     serialPort = new SafeSerialPort(currentPort, 115200, Parity.None, 8, StopBits.One);
                     serialPort.ReadTimeout = 100;
                     serialPort.Open();
+                    waitingToConnect = !serialPort.IsOpen;
                 }
             }
         }
