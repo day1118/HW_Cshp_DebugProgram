@@ -56,6 +56,9 @@
     <Compile Include="CustomModule.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EncoderModule.cs">
       <SubType>Component</SubType>
     </Compile>

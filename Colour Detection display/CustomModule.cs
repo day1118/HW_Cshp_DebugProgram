@@ -7,27 +7,24 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Colour_Detection_display
 {
-    class CustomModule : TabPage
+    class CustomModule : CustomTabPage
     {
-        TableLayoutPanel layoutPanel = new TableLayoutPanel();
-        Chart[] charts = new CustomChart[6];
         TextBox[] textboxs = new CustomTextbox[6];
-        int plotLength = 50;
-        char stringDelimiter = ':';
-
         TabControl tabControl;
-      
-        public CustomModule(string name)
+
+        public CustomModule(string name) : base(name, name)
         {
             this.Name = "tpg" + name;
             this.Text = name;
 
-            charts[0] = new CustomChart(name + " 1");
-            charts[1] = new CustomChart(name + " 2");
-            charts[2] = new CustomChart(name + " 3");
-            charts[3] = new CustomChart(name + " 4");
-            charts[4] = new CustomChart(name + " 5");
-            charts[5] = new CustomChart(name + " 6");
+            charts = new CustomTabChart[6];
+
+            charts[0] = new CustomTabChart(name + " 1");
+            charts[1] = new CustomTabChart(name + " 2");
+            charts[2] = new CustomTabChart(name + " 3");
+            charts[3] = new CustomTabChart(name + " 4");
+            charts[4] = new CustomTabChart(name + " 5");
+            charts[5] = new CustomTabChart(name + " 6");
 
             textboxs[0] = new CustomTextbox(name + " 1");
             textboxs[1] = new CustomTextbox(name + " 2");
@@ -63,36 +60,46 @@ namespace Colour_Detection_display
 
         public void addData(string text)
         {
+            string[] splitText = text.Split(stringDelimiter);
+
+            if (splitText.Length == 2)
+            {
+                String name = splitText[0];
+                String value = splitText[1];
+                int iValue = Convert.ToInt32(value);
+
+                foreach (Chart chart in charts)
+                {
+                    if (chart.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+                        addDataToChart(iValue, chart);
+                }
+            }
         }
 
         public void setup(TabControl newTabControl)
         {
             tabControl = newTabControl;
-            CustomTextbox.setup(tabControl);
+            CustomTextbox.setup(null);
         }
 
-        private void textbox_TextChanged(object sender, EventArgs e)
+        public void setChart(TextBox textBox)
         {
-
+            CustomChart chart = charts[Array.IndexOf(textboxs, textBox)];
+            String name = textBox.Text;
+            chart.setTitle(name.Replace('_', ' '));            
+            chart.Name = name.Replace(' ', '_');
+            chart.clear();
         }
     }
 
-    class CustomChart : Chart
+    class CustomTabChart : CustomChart
     {
-        public CustomChart(string name)
-        {
-            string simpleName = name.Replace(" ", "_");
-            this.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChartAreas.Add(new ChartArea("chartArea"));
-            this.Titles.Add(name);
-            this.Name = simpleName;
-            this.Series.Add(simpleName);
-        }
+        public CustomTabChart(string name): base(name) {}
     }
 
     class CustomTextbox: TextBox
     {
-        static TabControl tabControl;
+        static CustomTabPage[] tabPages;
 
         public CustomTextbox(string name)
         {
@@ -104,9 +111,9 @@ namespace Colour_Detection_display
             this.TextChanged += new System.EventHandler(this.textbox_TextChanged);
         }
 
-        public static void setup(TabControl newTabControl)
+        public static void setup(CustomTabPage[] newTabPages)
         {
-            tabControl = newTabControl;
+            tabPages = newTabPages;
         }
 
         private void textbox_TextChanged(object sender, EventArgs e)
@@ -118,9 +125,8 @@ namespace Colour_Detection_display
                 textbox = (TextBox)sender;
                 name = textbox.Text;
 
-                foreach (TabPage tabPage in tabControl.TabPages)
-                {
-                }
+                CustomModule customModule = (CustomModule) this.Parent.Parent;
+                customModule.setChart(textbox);
             }
         }
     }
