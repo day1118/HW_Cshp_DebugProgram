@@ -64,7 +64,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(886, 874);
+            this.tabControl1.Size = new System.Drawing.Size(886, 704);
             this.tabControl1.TabIndex = 1;
             // 
             // tpgSettings
@@ -72,7 +72,7 @@
             this.tpgSettings.Controls.Add(this.tableLayoutPanel1);
             this.tpgSettings.Location = new System.Drawing.Point(4, 22);
             this.tpgSettings.Name = "tpgSettings";
-            this.tpgSettings.Size = new System.Drawing.Size(878, 848);
+            this.tpgSettings.Size = new System.Drawing.Size(878, 678);
             this.tpgSettings.TabIndex = 11;
             this.tpgSettings.Text = "Settings";
             this.tpgSettings.UseVisualStyleBackColor = true;
@@ -188,7 +188,7 @@
             // 
             this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusPort});
-            this.statusStrip2.Location = new System.Drawing.Point(0, 898);
+            this.statusStrip2.Location = new System.Drawing.Point(0, 728);
             this.statusStrip2.Name = "statusStrip2";
             this.statusStrip2.Size = new System.Drawing.Size(886, 22);
             this.statusStrip2.TabIndex = 2;
@@ -266,12 +266,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(886, 920);
+            this.ClientSize = new System.Drawing.Size(886, 750);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.menuStrip2);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpgSettings.ResumeLayout(false);
