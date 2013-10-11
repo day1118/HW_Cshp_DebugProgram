@@ -105,6 +105,15 @@ namespace Colour_Detection_display
         {
             try
             {
+                if (Form1.ActiveForm == null)
+                {
+                    // Disconnect because we don't have focus.
+                    if (serialPort != null && serialPort.IsOpen)
+                    {
+                        toolStripConnect_Click(toolStripConnect, null);
+                    }
+                }
+                
                 if (serialPort != null && !serialPort.IsOpen)
                 {
                     if (waitingToConnect)
@@ -324,6 +333,15 @@ namespace Colour_Detection_display
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
+            {
+                toolStripConnect_Click(toolStripConnect, null);
+            }
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            // Try and connect because we got the focus back
+            if (serialPort != null && !serialPort.IsOpen)
             {
                 toolStripConnect_Click(toolStripConnect, null);
             }
