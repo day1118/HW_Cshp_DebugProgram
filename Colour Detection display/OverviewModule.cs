@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -131,8 +132,20 @@ namespace Colour_Detection_display
         {
             // Read each line of the file into a string array. Each element 
             // of the array is one line of the file. 
-            string[] lines = System.IO.File.ReadAllLines(@"states.h");
+            string curentDirectory = Directory.GetCurrentDirectory();
+            string gitDirectory = getParent(curentDirectory, 4);
+            string projectDirectory = getParent(curentDirectory, 3);
+            string configDirectory = gitDirectory + @"\HW_Hockey";
+            string configFile1 = configDirectory + @"\states.h";
+            string configFile2 = projectDirectory + @"\states.h";
 
+            string[] lines = {};
+
+            if(File.Exists(configFile1))
+                lines = System.IO.File.ReadAllLines(configFile1);
+            else if (File.Exists(configFile2))
+                lines = System.IO.File.ReadAllLines(configFile2);
+            
             foreach (String line in lines)
             {
                 String tempLine;
@@ -153,7 +166,17 @@ namespace Colour_Detection_display
                     }
                 }
             }
-        }       
+        }
+
+        private string getParent(string path, int depth)
+        {
+            string parentPath = path;
+            for (int i = 0; i < depth; i++)
+            {
+                parentPath = Directory.GetParent(parentPath).ToString();
+            }
+            return parentPath;
+        }
 
         private class ListItem : ListViewItem
         {
