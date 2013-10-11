@@ -11,7 +11,9 @@ namespace Colour_Detection_display
     {
         ListView listView = new ListView();
         char stringDelimiter = ':';
-        
+
+        LinkedList<State> states = new LinkedList<State>();
+
         public OverviewModule(string name)
         {
             this.Name = "tpg" + name;
@@ -20,6 +22,7 @@ namespace Colour_Detection_display
             System.Windows.Forms.ColumnHeader colName = new System.Windows.Forms.ColumnHeader();
             System.Windows.Forms.ColumnHeader colValue = new System.Windows.Forms.ColumnHeader();
             System.Windows.Forms.ColumnHeader colAvg = new System.Windows.Forms.ColumnHeader();
+            System.Windows.Forms.ColumnHeader colCommment = new System.Windows.Forms.ColumnHeader();
 
             colName.Text = "Name";
             colName.Width = 230;
@@ -30,8 +33,11 @@ namespace Colour_Detection_display
             colAvg.Text = "Average";
             colAvg.Width = 100;
 
+            colCommment.Text = "Comment";
+            colCommment.Width = 400;
+
             listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            colName, colValue, colAvg});
+            colName, colValue, colAvg, colCommment});
             listView.Dock = System.Windows.Forms.DockStyle.Fill;
             listView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             listView.GridLines = true;
@@ -40,8 +46,10 @@ namespace Colour_Detection_display
 
             this.Controls.Add(listView);
 
-            ListItem a = new ListItem("test", "5");
+            ListItem a = new ListItem("test", "5", "");
             listView.Items.Add(a);
+
+            readStatesFile();
 
             Timer timer = new Timer();
             timer.Interval = 2000;
@@ -79,16 +87,30 @@ namespace Colour_Detection_display
             {
                 String name = splitText[0];
                 String value = splitText[1];
+                String comment = "";
+
+                if(name.EndsWith("State"))
+                {
+                    String stateNameShort = name.Replace("State", "");
+                    State tempState = new State("STATE_" + stateNameShort.ToUpper() + "_?", value);
+                    LinkedListNode<State> matchingStateNode = states.Find(tempState);
+
+                    if (matchingStateNode != null)
+                    {
+                        State matchingState = matchingStateNode.Value;
+                        comment = matchingState.name;
+                    }
+                }
 
                 ListItem item = findItemInList(name);
                 if (item == null)
                 {
-                    item = new ListItem(name, value);
+                    item = new ListItem(name, value, comment);
                     listView.Items.Add(item);
                 }
                 else
                 {
-                    item.updateValue(value);
+                    item.updateValue(value, comment);
                 }
             }
         }
@@ -105,6 +127,34 @@ namespace Colour_Detection_display
             return null;
         }
 
+        private void readStatesFile()
+        {
+            // Read each line of the file into a string array. Each element 
+            // of the array is one line of the file. 
+            string[] lines = System.IO.File.ReadAllLines(@"states.h");
+
+            foreach (String line in lines)
+            {
+                String tempLine;
+                String[] lineParts;
+                if (line.StartsWith("#define "))
+                {
+                    tempLine = line.Replace("#define ", "");
+                    if (tempLine.StartsWith("STATE"))
+                    {
+                        lineParts = tempLine.Split(' ', '\t');
+                        if (lineParts.Length >= 2)
+                        {
+                            String name = lineParts[0];
+                            String value = lineParts[lineParts.Length - 1];
+
+                            states.AddLast(new State(name, value));
+                        }
+                    }
+                }
+            }
+        }       
+
         private class ListItem : ListViewItem
         {
             public static LinkedList<ListItem> itemList = new LinkedList<ListItem>();
@@ -112,28 +162,32 @@ namespace Colour_Detection_display
             public string name;
             int value;
             int average;
+            String comment;
 
             static int averageLength = 10;
             static int averageDelayTime = 1000;
 
-            public ListItem(string newName, string newValue)
+            public ListItem(string newName, string newValue, string newComment)
             {
                 updateTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
                 name = newName;
                 value = Convert.ToInt32(newValue);
+                comment = newComment;
                 average = 0;
 
                 this.Text = name;
                 this.SubItems.Add(value.ToString());
                 this.SubItems.Add(average.ToString());
+                this.SubItems.Add(comment);
 
                 itemList.AddLast(this);
             }
 
-            public void updateValue(string newValue)
+            public void updateValue(string newValue, string newComment)
             {
                 long currentTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
                 value = Convert.ToInt32(newValue);
+                comment = newComment;
 
                 average -= average / averageLength;
                 average += value / averageLength;
@@ -146,6 +200,8 @@ namespace Colour_Detection_display
                     averageUpdateTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
                 }
 
+                this.SubItems[3].Text = comment;
+
                 updateTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             }
 
@@ -153,6 +209,39 @@ namespace Colour_Detection_display
             {
                 long currentTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
                 return (currentTime > updateTime + 5000);
+            }
+        }
+
+        class State
+        {
+            public String name;
+            String type;
+            int value;
+
+            public State(String newName, String newValue)
+            {
+                name = newName;
+                Int32.TryParse(newValue, out value);
+
+                String[] lineParts = newName.Split('_');
+                if (lineParts.Length >= 3)
+                {
+                    if (lineParts[0] == "STATE")
+                    {
+                        type = lineParts[1];
+                    }
+                }
+            }
+
+            public override bool Equals(object obj)
+            {
+                State state;
+                if(obj is State)
+                {
+                    state = (State)obj;
+                    return (state.type.Equals(this.type) && state.value == this.value);
+                }
+                else return false;
             }
         }
     }

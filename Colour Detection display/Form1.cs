@@ -25,8 +25,6 @@ namespace Colour_Detection_display
 
         SafeSerialPort serialPort;
 
-        LinkedList<State> states = new LinkedList<State>();
-
         public static bool serialPortOpen = false;
 
         OverviewModule tpgOverview = new OverviewModule("Overview");
@@ -81,9 +79,11 @@ namespace Colour_Detection_display
                 // Select the first port avaliable as a guess
                 toolStripPort_Click(toolStripPort.DropDownItems[0], null);
                 toolStripConnect_Click(toolStripConnect, null);
-            }
+           }
 
-            readStatesFile();
+            tpgOverview.addData("driveState:3");
+            tpgOverview.addData("servoState:4");
+            tpgOverview.addData("goalState:4");
 
             timer1.Enabled = true;
         }
@@ -348,62 +348,6 @@ namespace Colour_Detection_display
             if (serialPort != null && !serialPort.IsOpen)
             {
                 toolStripConnect_Click(toolStripConnect, null);
-            }
-        }
-
-        private void readStatesFile()
-        {
-            // Read each line of the file into a string array. Each element 
-            // of the array is one line of the file. 
-            string[] lines = System.IO.File.ReadAllLines(@"states.h");
-
-            foreach (String line in lines)
-            {
-                String tempLine;
-                String[] lineParts;
-                if(line.StartsWith("#define "))
-                {
-                    tempLine = line.Replace("#define ", "");
-                    if(tempLine.StartsWith("STATE"))
-                    {
-                        lineParts = tempLine.Split(' ', '\t');
-                        if (lineParts.Length >= 2)
-                        {
-                            String name = lineParts[0];
-                            int value;
-                            Int32.TryParse(lineParts[lineParts.Length - 1], out value);
-
-                            states.AddLast(new State(name, value));
-                        }
-                    }
-                }
-            }
-        }
-
-        class State
-        {
-            String name;
-            String type;
-            int value;
-
-            public State(String newName, int newValue)
-            {
-                name = newName;
-                value = newValue;
-
-                String[] lineParts = newName.Split('_');
-                if (lineParts.Length >= 3)
-                {
-                    if (lineParts[0] == "STATE")
-                    {
-                        type = lineParts[1];
-                    }
-                }
-            }
-
-            public override bool Equals(object obj)
-            {
- 	             return name.Equals(obj);
             }
         }
     }
