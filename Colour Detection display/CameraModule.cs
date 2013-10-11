@@ -9,6 +9,8 @@ namespace Colour_Detection_display
 {
     class CameraModule : TabPage
     {
+        int bestWidth = 0;
+        int bestStart = 0;
         char stringDelimiter = ':';
 
         TableLayoutPanel layoutPanel = new TableLayoutPanel();
@@ -47,11 +49,10 @@ namespace Colour_Detection_display
         public void addData(string text)
         {
             string[] splitText = text.Split(stringDelimiter);
+            String name = splitText[0];
 
             if (splitText.Length == 131)
             {
-                String name = splitText[0];
-
                 if (name.Equals("CAM_RAW"))
                 {
                     while (charts[0].Series[0].Points.Count > 0)
@@ -67,6 +68,46 @@ namespace Colour_Detection_display
                     charts[0].ChartAreas[0].RecalculateAxesScale();
                 }
             }
+            else if (splitText.Length == 2)
+            {
+                String value = splitText[1];
+                int iValue = Convert.ToInt32(value);
+
+                if (name.Equals("CAM_Start"))
+                {
+                    bestStart = iValue;
+                    updatePeakDetectPlot();
+                }
+                else if (name.Equals("CAM_Width"))
+                {
+                    bestWidth = iValue;
+                    updatePeakDetectPlot();
+                }
+            }
+        }
+
+        void updatePeakDetectPlot()
+        {
+            Chart chart = charts[1];
+
+            while (chart.Series[0].Points.Count < 128)
+            {
+                chart.Series[0].Points.Add(0);
+            }
+
+            while (chart.Series[0].Points.Count > 128)
+            {
+                chart.Series[0].Points.RemoveAt(0);
+            }
+
+            for(int i = 0; i < chart.Series[0].Points.Count; i++)
+            {
+                if (i >= bestStart && i <= (bestStart + bestWidth) && bestWidth > 0)
+                    chart.Series[0].Points[i].SetValueY(1);
+                else
+                    chart.Series[0].Points[i].SetValueY(0);
+            }
+            chart.ChartAreas[0].RecalculateAxesScale();
         }
 
         class CameraChart : Chart
