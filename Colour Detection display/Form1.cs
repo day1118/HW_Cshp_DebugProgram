@@ -85,6 +85,10 @@ namespace Colour_Detection_display
             tpgOverview.addData("servoState:4");
             tpgOverview.addData("goalState:4");
 
+            tpgCustom.addData("driveState:3");
+            tpgCustom.addData("servoState:4");
+            tpgCustom.addData("goalState:4");
+
             timer1.Enabled = true;
         }
 

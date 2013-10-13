@@ -12,6 +12,8 @@ namespace Colour_Detection_display
         TextBox[] textboxs = new CustomTextbox[6];
         TabControl tabControl;
 
+        AutoCompleteStringCollection autoCompleteData = new AutoCompleteStringCollection();
+
         public CustomModule(string name) : base(name, name)
         {
             this.Name = "tpg" + name;
@@ -19,19 +21,15 @@ namespace Colour_Detection_display
 
             charts = new CustomTabChart[6];
 
-            charts[0] = new CustomTabChart(name + " 1");
-            charts[1] = new CustomTabChart(name + " 2");
-            charts[2] = new CustomTabChart(name + " 3");
-            charts[3] = new CustomTabChart(name + " 4");
-            charts[4] = new CustomTabChart(name + " 5");
-            charts[5] = new CustomTabChart(name + " 6");
-
-            textboxs[0] = new CustomTextbox(name + " 1");
-            textboxs[1] = new CustomTextbox(name + " 2");
-            textboxs[2] = new CustomTextbox(name + " 3");
-            textboxs[3] = new CustomTextbox(name + " 4");
-            textboxs[4] = new CustomTextbox(name + " 5");
-            textboxs[5] = new CustomTextbox(name + " 6");
+            for (int i = 0; i < 6; i++)
+            {
+                charts[i] = new CustomTabChart(name + " " + (i+1));
+                charts[i].TabStop = false;
+                textboxs[i] = new CustomTextbox(name + " " + (i+1));
+                textboxs[i].AutoCompleteMode = AutoCompleteMode.Suggest;
+                textboxs[i].AutoCompleteSource = AutoCompleteSource.CustomSource;
+                textboxs[i].AutoCompleteCustomSource = autoCompleteData;
+            }
 
             layoutPanel.ColumnCount = 3;
             layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -58,7 +56,7 @@ namespace Colour_Detection_display
             this.Controls.Add(layoutPanel);
         }
 
-        public void addData(string text)
+        public new void addData(string text)
         {
             string[] splitText = text.Split(stringDelimiter);
 
@@ -72,6 +70,11 @@ namespace Colour_Detection_display
                 {
                     if (chart.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
                         addDataToChart(iValue, chart);
+                }
+
+                if(!autoCompleteData.Contains(name))
+                {
+                    autoCompleteData.Add(name);
                 }
             }
         }
