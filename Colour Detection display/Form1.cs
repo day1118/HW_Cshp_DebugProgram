@@ -283,6 +283,13 @@ namespace Colour_Detection_display
             tpgGMR.setLockedAxis(lockAxis);
             tpgBALL.setLockedAxis(lockAxis);
             tpgCamera.setLockedAxis(lockAxis);
+            tpgCustom.setLockedAxis(lockAxis);
+            tpgUltrasonics.setLockedAxis(lockAxis);
+            tpgServos.setLockedAxis(lockAxis);
+            tpgEncoderLeft.setLockedAxis(lockAxis);
+            tpgEncoderRight.setLockedAxis(lockAxis);
+            tpgMotors.setLockedAxis(lockAxis);
+            tpgMicroswitchs.setLockedAxis(lockAxis);
         }
 
         private void updateSerialPortList()
