@@ -13,7 +13,7 @@ namespace Colour_Detection_display
         ListView listView = new ListView();
         char stringDelimiter = ':';
 
-        LinkedList<State> states = new LinkedList<State>();
+        LinkedList<Note> notes = new LinkedList<Note>();
 
         public OverviewModule(string name)
         {
@@ -93,13 +93,26 @@ namespace Colour_Detection_display
                 if(name.EndsWith("State"))
                 {
                     String stateNameShort = name.Replace("State", "");
-                    State tempState = new State("STATE_" + stateNameShort.ToUpper() + "_?", value);
-                    LinkedListNode<State> matchingStateNode = states.Find(tempState);
+                    Note tempState = new Note("STATE_" + stateNameShort.ToUpper() + "_?", value);
+                    LinkedListNode<Note> matchingStateNode = notes.Find(tempState);
 
                     if (matchingStateNode != null)
                     {
-                        State matchingState = matchingStateNode.Value;
+                        Note matchingState = matchingStateNode.Value;
                         comment = matchingState.name;
+                    }
+                }
+
+                if (name.EndsWith("Direction"))
+                {
+                    String noteNameShort = name.Replace("_Direction", "");
+                    Note tempNote = new Note("DIRECTION_?", value);
+                    LinkedListNode<Note> matchingNoteNode = notes.Find(tempNote);
+
+                    if (matchingNoteNode != null)
+                    {
+                        Note matchingNote = matchingNoteNode.Value;
+                        comment = matchingNote.name.Replace("DIRECTION_", "");
                     }
                 }
 
@@ -136,7 +149,7 @@ namespace Colour_Detection_display
             string gitDirectory = getParent(curentDirectory, 4);
             string projectDirectory = getParent(curentDirectory, 3);
             string configDirectory = gitDirectory + @"\HW_Hockey";
-            string configFile1 = configDirectory + @"\states.h";
+            string configFile1 = configDirectory + @"\libraries\Config\States.h";
             string configFile2 = projectDirectory + @"\states.h";
 
             string[] lines = {};
@@ -153,16 +166,13 @@ namespace Colour_Detection_display
                 if (line.StartsWith("#define "))
                 {
                     tempLine = line.Replace("#define ", "");
-                    if (tempLine.StartsWith("STATE"))
+                    lineParts = tempLine.Split(' ', '\t');
+                    if (lineParts.Length >= 2)
                     {
-                        lineParts = tempLine.Split(' ', '\t');
-                        if (lineParts.Length >= 2)
-                        {
-                            String name = lineParts[0];
-                            String value = lineParts[lineParts.Length - 1];
+                        String name = lineParts[0];
+                        String value = lineParts[lineParts.Length - 1];
 
-                            states.AddLast(new State(name, value));
-                        }
+                        notes.AddLast(new Note(name, value));
                     }
                 }
             }
@@ -235,34 +245,38 @@ namespace Colour_Detection_display
             }
         }
 
-        class State
+        class Note
         {
             public String name;
-            String type;
+            String majorType;
+            String minorType;
             int value;
 
-            public State(String newName, String newValue)
+            public Note(String newName, String newValue)
             {
                 name = newName;
                 Int32.TryParse(newValue, out value);
 
                 String[] lineParts = newName.Split('_');
-                if (lineParts.Length >= 3)
+                if (lineParts.Length >= 3 && lineParts[0].Equals("STATE", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    if (lineParts[0] == "STATE")
-                    {
-                        type = lineParts[1];
-                    }
+                    majorType = lineParts[0];
+                    minorType = lineParts[1];
+                }
+                else if (lineParts.Length >= 2 && lineParts[0].Equals("DIRECTION", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    majorType = lineParts[0];
+                    minorType = "?";
                 }
             }
 
             public override bool Equals(object obj)
             {
-                State state;
-                if(obj is State)
+                Note note;
+                if(obj is Note)
                 {
-                    state = (State)obj;
-                    return (state.type.Equals(this.type) && state.value == this.value);
+                    note = (Note)obj;
+                    return (note.majorType.Equals(this.majorType) && note.minorType.Equals(this.minorType) && note.value == this.value);
                 }
                 else return false;
             }
