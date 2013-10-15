@@ -51,7 +51,7 @@ namespace Colour_Detection_display
             string[] splitText = text.Split(stringDelimiter);
             String name = splitText[0];
 
-            if (splitText.Length == 131)
+            if (splitText.Length > 125 && splitText.Length < 135)
             {
                 if (name.Equals("CAM_RAW"))
                 {
