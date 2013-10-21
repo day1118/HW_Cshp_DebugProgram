@@ -26,6 +26,10 @@ namespace Colour_Detection_display
             charts[0] = new CameraChart(name + " Raw");
             charts[1] = new CameraChart(name + " Peak Detect");
 
+            Series newSeries = new Series("Center");
+            newSeries.Color = System.Drawing.Color.Red;
+            charts[1].Series.Add(newSeries);
+
             layoutPanel.ColumnCount = cols;
             layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -90,6 +94,9 @@ namespace Colour_Detection_display
         {
             Chart chart = charts[1];
 
+            if (bestWidth > 0)
+                chart.Series[1].Points.AddXY(bestStart + (bestWidth / 2), 1);
+
             while (chart.Series[0].Points.Count < 128)
             {
                 chart.Series[0].Points.Add(0);
@@ -102,11 +109,17 @@ namespace Colour_Detection_display
 
             for(int i = 0; i < chart.Series[0].Points.Count; i++)
             {
-                if (i >= bestStart && i <= (bestStart + bestWidth) && bestWidth > 0)
+                if (i >= bestStart && i <= (bestStart + bestWidth) && bestWidth > 0 && (i != (bestStart + (bestWidth/2))))
                     chart.Series[0].Points[i].SetValueY(1);
                 else
                     chart.Series[0].Points[i].SetValueY(0);
             }
+
+            while (chart.Series[1].Points.Count > 0)
+            {
+                chart.Series[1].Points.RemoveAt(0);
+            }
+
             chart.ChartAreas[0].RecalculateAxesScale();
         }
 
